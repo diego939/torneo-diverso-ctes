@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="estilos.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
     <link rel="shortcut icon" href="images/Fundaac-logo.png">
     <title>Corrientes Diversa 2024</title>
@@ -99,11 +99,11 @@
 <!-- Inicio del acordeon-->
       <div id="accordion" class="panel-seccion text-center mt-2 mb-4">
 
-        <div class="alert alert-warning alert-dismissible h5">
+        <div class="alert alert-success alert-dismissible h5">
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            <strong><i class="bi bi-exclamation-triangle"></i> Atención!</strong> Inscripciones abiertas hasta el 31/01/2024
+            <strong><i class="bi bi-check-circle"></i> Atención!</strong> Ya se encuentra habilitado el CBU para la inscripción
+            
         </div>
-
         <div class="card">
           <div class="card-header d-grid" >
             <a style="font-size:x-large;" class="collapsed btn btn-block btn-dark" data-bs-toggle="collapse" href="#collapseUno">
@@ -136,15 +136,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para Exhibición, Formas y Lucha.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -248,15 +246,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para el torneo de Voley.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -293,7 +289,7 @@
                         <div class="modal-body" style="text-align: justify;">
                             <p>El torneo contará con la participación de 16 a 24 equipos </p>
                             <p>Cada delegación estará conformada por un máximo de 14 personas.</p>
-                            <p><strong>Locación:</strong> 4 canchas (Secretaria de Deportes, CEF 1, CEF 17, Club Colon) (de 8 a 18 hs)</p>
+                            <p><strong>Locación:</strong> 4 canchas (Secretaria de Deportes, CEF 17, Club Colon) (de 8 a 18 hs)</p>
                             <p><strong>Carga horaria:</strong> 25 horas -10, 10 y 5 h/día distribuidas en las canchas.</p>
                             <p><strong>Participación máxima:</strong> de 224 a 336 personas.</p>
                             <p><strong>Premiación y reconocimientos:</strong> a los tres primeros puestos </p>
@@ -321,7 +317,6 @@
                     <div class="card-body">Podés encontrar los mapas para llegar los lugares de competencia</div>
                     <div class="card-footer">
                             <a href="https://maps.app.goo.gl/cpezM3Le72qonon18" target="_blank" class="btn btn-primary bi-geo-alt m-2"> CEF 17 </a>
-                            <a href="https://maps.app.goo.gl/B66hAfmvedZX7xybA" target="_blank" class="btn btn-primary bi-geo-alt m-2"> CEF 1 </a>
                             <a href="https://maps.app.goo.gl/KvDoFRc5pMnqzyHJ6" target="_blank" class="btn btn-primary bi-geo-alt m-2"> Secretaría de Deportes</a>
                             <a href="https://maps.app.goo.gl/xUm7E956G2vbfxSg8" target="_blank" class="btn btn-primary bi-geo-alt m-2"> Club Colón </a>
                     </div>
@@ -360,15 +355,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para el torneo de Básquet.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -469,15 +462,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para el torneo de Fútbol 5.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -582,15 +573,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para el torneo de Hockey sobre Cesped.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -691,15 +680,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para el torneo de Handball.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -800,15 +787,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para el torneo de Rugby.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -909,15 +894,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para el torneo de Padel.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -1018,15 +1001,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para el torneo de Ténis.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -1129,15 +1110,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para para el torneo de Natación.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -1238,15 +1217,13 @@
                         <p>
                             Este año 2024 Corrientes nos abre sus puertas para recibir a les deportistas de la diversidad LGBT+ el día 10, 11, 12 Y 13 de febrero del 2024, iniciamos las inscripciones para para el torneo de Atletismo.
                         </p>
-                        <p>Los pagos se realizan a través de transferencia: </p>
-                            <div class="alert alert-success alert-dismissible h6">
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                <strong><i class="bi bi-check-circle"></i></strong> En los póximos días tendremos publicado el CBU de la fundación
-                            </div>
+                        <p>Los pagos se realizan a través de transferencia.</p>
+                         <hr style="opacity: 1;">
                         <p class="fw-bold">
-                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando cuando tengamos el CBU a disposición"</span>
+                            Ya se encuentra habilitada la preinscripción, podés realizarla descargando la lista de buena fé y llenandola con los datos del equipo. <span class="text-success"> "Luego la inscripción la podés completar abonando al CBU de la fundación:"</span>
                         </p>
-                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente:</p>
+                        <p class="fw-bold">CBU: <input type="text" id="copyCbu" value="0940099330010170690010" disabled style="border: 0; text-align: center; font-weight: bold;"><button class="btn btn-outline-dark bi bi-copy" onclick="copiarCbu()"> copiar</button></p>
+                        <p>Para preinscribirte rellená la planilla de buena fé y enviala junto con tu logo al número y correo siguiente, si ya te preinscribiste la inscripción la completas enviando el comprobante de pago al mismo número y correo:</p>
                         <a href="https://wa.me/+543795005047" target="_blank" rel="noopener noreferrer" class="fw-bold btn btn-outline-dark bi-whatsapp"> +54 9 3795 00-5047</a>
                         <a href="mailto:fundacioncorrientesdiversa@gmail.com?Subject=Lista%20De%20Buena%20Fe%20y%20Logo" target="_blank" rel="noopener noreferrer" class="fw-bold btn text-break"> fundacioncorrientesdiversa@gmail.com</a>
                             
@@ -1540,6 +1517,15 @@
             confirmButtonColor: "#0F7E02",
             imageAlt: "Custom image"
             });
+        }
+
+        function copiarCbu(){
+            let text = document.getElementById('copyCbu')
+            text.select()
+            navigator.clipboard.writeText(text.value)
+            Swal.fire({
+                text: 'Copiado El CBU: ' +text.value,
+                });
         }
     </script>
 </body>
