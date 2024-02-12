@@ -196,6 +196,7 @@
                             <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioHockey()">Hockey</button></div>
                             <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioTenis()">Tenis</button></div>
                             <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioPadel()">Padel</button></div>
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioBasquet()">Basquet</button></div>
                         </div>
                     </p>
                 </details>
@@ -2139,6 +2140,35 @@
                     <tr>
                         <td>3º</td>
                         <td>Nicolás y Juliana (GAPEF)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
+                });
+        }
+
+        function podioBasquet(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Basquet</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Equipo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>La Glorieta (San Juan)</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>Mboyeré (Ctes)</td>
                     </tr>
                     </tbody>
                 </table>
