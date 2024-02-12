@@ -179,6 +179,30 @@
             </div>
         </div>
 
+        <div class="card bg-success mt-2 mb-4">
+            <div class="card-header h2 text-center font-effect-outline">
+                Podios <i class="bi bi-trophy"></i><i class="bi bi-award"></i>
+            </div>
+            <div class="card-body bg-white rounded border-success">
+                <details>
+                    <summary class="h5 fw-bold"> Ver Podios</summary>
+                    <p>
+                        <div class="row">
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioFut()">Futbol 5</button></div>
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioHand()">Handbol</button></div>
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioVoleyMix()">Voley Mixto</button></div>
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioVoleyLibre()">Voley Libre</button></div>
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioVoleyPlaya()">Voley Playa</button></div>
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioHockey()">Hockey</button></div>
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioTenis()">Tenis</button></div>
+                            <div class="col-md-4 d-grid"><button class="btn btn-success btn-block m-1" onclick="podioPadel()">Padel</button></div>
+                        </div>
+                    </p>
+                </details>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+
         <div class="card">
           <div class="card-header d-grid" >
             <a style="font-size:x-large;" class="collapsed btn btn-block btn-dark" data-bs-toggle="collapse" href="#collapseUno">
@@ -1842,6 +1866,283 @@
                 text: 'Copiado El CBU: ' +text.value,
                 imageUrl: "images/cuenta.jpeg",
                 imageWidth: 500,
+                });
+        }
+
+        /*Podios*/
+        function podioFut(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Fútbol 5</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Equipo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>La Glorieta (San Juan)</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>Yacaré A (Ctes)</td>
+                    </tr>
+                    <tr>
+                        <td>3º</td>
+                        <td>Yacaré B (Ctes)</td>
+                    </tr>
+                    <tr>
+                        <td>4º</td>
+                        <td>Cheetahs (Bs As)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
+                });
+        }
+
+        function podioHand(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Handbol</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Equipo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>Carayá (Ctes)</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>Aguará (Ctes)</td>
+                    </tr>
+                    <tr>
+                        <td>3º</td>
+                        <td>Carpinches (Entre Rios)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
+                });
+        }
+
+        function podioVoleyMix(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Voley Mixto</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Equipo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>Carpinches (Entre Rios)</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>Yaguareté Azul (Ctes)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
+                });
+        }
+
+        function podioVoleyLibre(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Voley Libre</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Equipo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>Yaguareté Rojo (Ctes)</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>La Normal (Salta)</td>
+                    </tr>
+                    <tr>
+                        <td>3º</td>
+                        <td>Yaguareté Amarillo (Ctes)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
+                });
+        }
+
+        function podioVoleyPlaya(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Voley Playa</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Equipo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>LP (Salta)</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>Oran (Salta)</td>
+                    </tr>
+                    <tr>
+                        <td>3º</td>
+                        <td>Carpinches (Entre Rios)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
+                });
+        }
+
+        function podioHockey(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Hockey</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Equipo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>Pre Selecc. Argentina</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>Katupyry Azul</td>
+                    </tr>
+                    <tr>
+                        <td>3º</td>
+                        <td>La Glorieta Rosado</td>
+                    </tr>
+                    <tr>
+                        <td>4º</td>
+                        <td>Katupyry Naranja</td>
+                    </tr>
+                    <tr>
+                        <td>5º</td>
+                        <td>Katupyry Rojo</td>
+                    </tr>
+                    <tr>
+                        <td>6º</td>
+                        <td>La Glorieta Celeste</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
+                });
+        }
+
+        function podioTenis(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Tenis</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Jugador</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>Julio Cisneros</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>Julián Ortiz</td>
+                    </tr>
+                    <tr>
+                        <td>3º</td>
+                        <td>Simón Ayala</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
+                });
+        }
+
+        function podioPadel(){
+            Swal.fire({
+                confirmButtonColor: '#008000',
+                icon: 'question',
+                iconHtml: '<i class="bi bi-trophy text-success"></i>',
+                html: `
+                <div class="h4 tex-tcenter">Podio Padel</div>
+                <table class="table table-success">
+                    <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Jugadores</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1º</td>
+                        <td>Jimena y Julián</td>
+                    </tr>
+                    <tr>
+                        <td>2º</td>
+                        <td>Yoha y Luis</td>
+                    </tr>
+                    <tr>
+                        <td>3º</td>
+                        <td>Nicolás y Juliana (GAPEF)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                    `,
                 });
         }
     </script>
