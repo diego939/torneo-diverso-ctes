@@ -1,0 +1,271 @@
+📁 ESTRUCTURA DE ARCHIVOS - CONFIGURACIÓN PRISMA
+═══════════════════════════════════════════════════════════════
+
+copa-corrientes-diversa/
+│
+├── 📁 prisma/                          [CONFIGURACIÓN DE PRISMA]
+│   ├── 📄 schema.prisma                ⭐ Schema de BD (modelos, relaciones)
+│   └── 📄 seed.ts                      🌱 Script para poblar BD con data.json
+│
+├── 📁 src/
+│   ├── 📁 lib/
+│   │   ├── 📄 prisma.ts                💾 Cliente Prisma (singleton)
+│   │   └── 📄 types.ts                 📝 Tipos TypeScript para JSON fields
+│   │
+│   └── 📁 routes/
+│       ├── 📁 deportes/
+│       │   ├── 📄 +page.server.ts      📋 Lista de deportes (desde BD)
+│       │   └── 📁 [id]/
+│       │       └── 📄 +page.server.ts  📄 Detalle de deporte (desde BD)
+│       │
+│       └── 📁 api/                     [API REST ENDPOINTS]
+│           └── 📁 deportes/
+│               ├── 📄 +server.ts       🔌 GET all, POST (crear)
+│               └── 📁 [id]/
+│                   └── 📄 +server.ts   🔌 GET, PUT, DELETE por ID
+│
+├── 📁 static/
+│   └── 📄 data.json                    📊 Datos originales (fuente del seed)
+│
+├── 📄 .env                             🔐 Credenciales BD (CREAR MANUALMENTE)
+├── 📄 env.example.txt                  📋 Plantilla de .env
+├── 📄 .gitignore                       🚫 Ignora .env y node_modules
+│
+├── 📄 package.json                     📦 Dependencias + Scripts Prisma
+├── 📄 tsconfig.json                    ⚙️  Config TypeScript (con @types/node)
+│
+├── 📄 database-setup.sql               🗄️  Script SQL manual (opcional)
+│
+├── 📄 setup.ps1                        🚀 Instalación automática (Windows)
+├── 📄 setup.sh                         🚀 Instalación automática (Linux/Mac)
+│
+├── 📄 START-HERE.md                    🎯 EMPIEZA AQUÍ - Guía rápida
+├── 📄 CHECKLIST-INSTALACION-PRISMA.md  ✅ Checklist con checkboxes
+├── 📄 INSTRUCCIONES-INSTALACION.md     📖 Instrucciones detalladas
+├── 📄 README-PRISMA.md                 📚 Documentación completa
+├── 📄 EJEMPLOS-USO-PRISMA.md           💡 Ejemplos de código
+├── 📄 RESUMEN-CONFIGURACION-PRISMA.md  📋 Resumen de archivos creados
+└── 📄 ESTRUCTURA-ARCHIVOS-PRISMA.txt   📁 Este archivo
+
+
+═══════════════════════════════════════════════════════════════
+FLUJO DE TRABAJO
+═══════════════════════════════════════════════════════════════
+
+1️⃣  DESARROLLO
+   ┌─────────────────────┐
+   │  schema.prisma      │ ◄── Define estructura
+   └─────────────────────┘
+            │
+            ▼
+   ┌─────────────────────┐
+   │  npm run db:push    │ ◄── Crea tablas en MySQL
+   └─────────────────────┘
+            │
+            ▼
+   ┌─────────────────────┐
+   │  prisma:generate    │ ◄── Genera cliente TypeScript
+   └─────────────────────┘
+            │
+            ▼
+   ┌─────────────────────┐
+   │  npm run db:seed    │ ◄── Puebla datos desde JSON
+   └─────────────────────┘
+
+
+2️⃣  USO EN CÓDIGO
+   ┌─────────────────────┐
+   │  import prisma      │ ◄── Importa cliente
+   │  from '$lib/prisma' │
+   └─────────────────────┘
+            │
+            ▼
+   ┌─────────────────────┐
+   │  prisma.deporte     │
+   │    .findMany()      │ ◄── Consulta datos
+   └─────────────────────┘
+            │
+            ▼
+   ┌─────────────────────┐
+   │  Return data to     │
+   │  Svelte component   │ ◄── Muestra en UI
+   └─────────────────────┘
+
+
+3️⃣  ESTRUCTURA DE BASE DE DATOS
+   ┌─────────────────────────────────────────────────┐
+   │                 MySQL Database                  │
+   │         copa_corrientes_diversa                 │
+   └─────────────────────────────────────────────────┘
+            │
+            ├── 📊 organizadores (1)
+            │      └── id, nombre, mails[], cbu, ...
+            │          │
+            │          └── 📊 torneos (1:n)
+            │                 └── id, nombre, descripcion, ...
+            │                     │
+            │                     ├── 📊 banners (1:n)
+            │                     │      └── id, encabezado, urlImagenes[], ...
+            │                     │
+            │                     └── 📊 deportes (1:n)
+            │                            └── id, nombre, horarios[], ...
+            │                                │
+            │                                ├── 📊 equipos (1:n)
+            │                                │      └── id, nombre, local, ...
+            │                                │
+            │                                └── 📊 podios (1:n)
+            │                                       └── id, equipoNombre, puesto, ...
+            │
+            ├── 📊 sponsors
+            │      └── id, nombre, urlImage, ...
+            │
+            └── 📊 usuarios
+                   └── id, email, contrasenia, ...
+
+
+═══════════════════════════════════════════════════════════════
+COMANDOS PRINCIPALES
+═══════════════════════════════════════════════════════════════
+
+INSTALACIÓN:
+  npm install                    → Instala dependencias
+  npm run prisma:generate        → Genera cliente Prisma
+  npm run db:push               → Crea/actualiza tablas en BD
+  npm run db:seed               → Puebla BD con datos
+
+DESARROLLO:
+  npm run dev                   → Inicia servidor desarrollo
+  npm run prisma:studio         → Abre GUI para ver/editar datos
+
+MANTENIMIENTO:
+  npx prisma migrate reset      → ⚠️  Borra todo y reinicia
+  npx prisma format             → Formatea schema.prisma
+  npx prisma validate           → Valida schema.prisma
+
+
+═══════════════════════════════════════════════════════════════
+DEPENDENCIAS AGREGADAS
+═══════════════════════════════════════════════════════════════
+
+dependencies:
+  └── @prisma/client@^6.1.0     → Cliente ORM
+
+devDependencies:
+  ├── prisma@^6.1.0             → CLI de Prisma
+  ├── tsx@^4.19.2               → Ejecutar TypeScript
+  └── @types/node@^22.10.5      → Types de Node.js
+
+
+═══════════════════════════════════════════════════════════════
+RUTAS DE EJEMPLO CREADAS
+═══════════════════════════════════════════════════════════════
+
+SERVER-SIDE (SvelteKit):
+  ✅ GET  /deportes              → Lista todos los deportes
+  ✅ GET  /deportes/[id]         → Detalle de un deporte
+
+API REST:
+  ✅ GET    /api/deportes        → Lista todos (JSON)
+  ✅ POST   /api/deportes        → Crear nuevo
+  ✅ GET    /api/deportes/[id]   → Obtener por ID
+  ✅ PUT    /api/deportes/[id]   → Actualizar
+  ✅ DELETE /api/deportes/[id]   → Eliminar
+
+
+═══════════════════════════════════════════════════════════════
+DOCUMENTACIÓN - ¿QUÉ LEER PRIMERO?
+═══════════════════════════════════════════════════════════════
+
+1. 🎯 START-HERE.md
+   └── Guía rápida de inicio (5 min)
+
+2. ✅ CHECKLIST-INSTALACION-PRISMA.md
+   └── Durante la instalación (20 min)
+
+3. 💡 EJEMPLOS-USO-PRISMA.md
+   └── Cuando empieces a programar (30 min)
+
+4. 📚 README-PRISMA.md
+   └── Referencia completa (lectura completa)
+
+5. 📋 RESUMEN-CONFIGURACION-PRISMA.md
+   └── Para entender qué se creó
+
+
+═══════════════════════════════════════════════════════════════
+DATOS MIGRADOS
+═══════════════════════════════════════════════════════════════
+
+static/data.json → MySQL
+├── organizador        → 1 registro  en tabla 'organizadores'
+├── torneoInfo         → 1 registro  en tabla 'torneos'
+├── banners            → 1 registro  en tabla 'banners'
+├── deportes           → 11 registros en tabla 'deportes'
+│   ├── artes-marciales
+│   ├── voley
+│   ├── basquet
+│   ├── futbol
+│   ├── hockey
+│   ├── handball
+│   ├── rugby
+│   ├── padel
+│   ├── tenis
+│   ├── natacion
+│   └── atletismo
+├── sponsors           → 7 registros en tabla 'sponsors'
+└── usuario ejemplo    → 1 registro  en tabla 'usuarios'
+
+
+═══════════════════════════════════════════════════════════════
+CARACTERÍSTICAS ESPECIALES
+═══════════════════════════════════════════════════════════════
+
+✨ Arrays en MySQL:
+   - Almacenados como JSON
+   - Ejemplo: mails, fechasCompetencia, horarios
+   - Cast necesario: `mails as string[]`
+
+✨ Relaciones en Cascada:
+   - Si borras un torneo, se borran sus deportes
+   - Si borras un deporte, se borran sus equipos
+
+✨ Timestamps Automáticos:
+   - createdAt: Fecha de creación
+   - updatedAt: Última actualización
+
+✨ IDs Personalizados:
+   - Mantiene IDs del JSON original
+   - Ejemplo: 'artes-marciales', 'voley'
+
+
+═══════════════════════════════════════════════════════════════
+PRÓXIMOS PASOS
+═══════════════════════════════════════════════════════════════
+
+☐ Completar instalación (seguir START-HERE.md)
+☐ Verificar datos en Prisma Studio
+☐ Adaptar componentes Svelte para usar Prisma
+☐ Crear formularios de administración
+☐ Implementar autenticación con hash de passwords
+☐ Agregar validaciones
+☐ Optimizar queries con índices
+☐ Implementar paginación
+☐ Agregar búsqueda y filtros
+☐ Preparar para producción
+
+
+═══════════════════════════════════════════════════════════════
+ENLACES ÚTILES
+═══════════════════════════════════════════════════════════════
+
+📖 Docs Prisma:        https://www.prisma.io/docs
+🎓 Prisma + SvelteKit: https://www.prisma.io/docs/guides/other/sveltekit
+💬 Prisma Discord:     https://pris.ly/discord
+📚 Prisma Examples:    https://github.com/prisma/prisma-examples
+
+
+═══════════════════════════════════════════════════════════════
+¡CONFIGURACIÓN COMPLETA! 🎉
+═══════════════════════════════════════════════════════════════
+
+

@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Organizador {
+  id              Int      @id @default(autoincrement())
+  nombre          String
+  mails           Json     // Lista de correos como JSON
+  celularWhatsapp String
+  cbu             String
+  alias           String
+  nombreRedes     String
+  redesUrl        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  torneos         Torneo[]
+
+  @@map("organizadores")
+}
+
+model Torneo {
+  id                   Int      @id @default(autoincrement())
+  nombre               String
+  descripcion          String   @db.Text
+  imagenPrincipal      String
+  fundamentacionTitulo String
+  fundamentacionTexto  Json     // Array de textos como JSON
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  organizadorId        Int
+  organizador          Organizador @relation(fields: [organizadorId], references: [id], onDelete: Cascade)
+
+  banners              Banner[]
+  deportes             Deporte[]
+
+  @@index([organizadorId])
+  @@map("torneos")
+}
+
+model Banner {
+  id           Int      @id @default(autoincrement())
+  encabezado   String
+  urlImagenes  Json     // Lista de URLs como JSON
+  textoPie     String
+  urlLocation  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  torneoId     Int
+  torneo       Torneo @relation(fields: [torneoId], references: [id], onDelete: Cascade)
+
+  @@index([torneoId])
+  @@map("banners")
+}
+
+model Deporte {
+  id                Int      @id @default(autoincrement())
+  nombre            String
+  planilla          String
+  reglamento        String
+  fixture           String
+  fechasCompetencia Json     // Array de fechas como JSON
+  horarios          Json     // Array de horarios como JSON
+  locationsNombre   Json     // Array de nombres como JSON
+  locationsUrl      Json     // Array de URLs como JSON
+  grupoUrlWhatsapp  String
+  redesSociales     Json     // Objeto con redes sociales como JSON
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  torneoId          Int
+  torneo            Torneo @relation(fields: [torneoId], references: [id], onDelete: Cascade)
+
+  equipos           Equipo[]
+  podios            Podio[]
+
+  @@index([torneoId])
+  @@map("deportes")
+}
+
+model Equipo {
+  id         Int      @id @default(autoincrement())
+  nombre     String
+  local      Boolean  @default(false)
+  urlLogo    String?
+  instagram  String?
+  facebook   String?
+  twitter    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  deporteId  Int
+  deporte    Deporte @relation(fields: [deporteId], references: [id], onDelete: Cascade)
+
+  @@index([deporteId])
+  @@map("equipos")
+}
+
+model Podio {
+  id           Int      @id @default(autoincrement())
+  equipoNombre String
+  puesto       Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  deporteId    Int
+  deporte      Deporte @relation(fields: [deporteId], references: [id], onDelete: Cascade)
+
+  @@index([deporteId])
+  @@map("podios")
+}
+
+model Sponsor {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  urlImage    String
+  redesNombre String
+  redesUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("sponsors")
+}
+
+model Usuario {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  contrasenia String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("usuarios")
+}
+
+model Config {
+  id          Int      @id @default(autoincrement())
+  anio        Int
+  descripcion String   @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("config")
+}
+
+

@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+@import "tailwindcss";
+
+/* Base styles */
+body {
+  background: linear-gradient(135deg, #d3f8f8 0%, #f8e1f8 100%);
+  min-height: 100vh;
+  font-family: "Inter", "Segoe UI", "Arial", sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b3b3b3;
+  border-radius: 8px;
+}

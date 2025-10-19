@@ -1,0 +1,291 @@
+{
+  "organizador": {
+    "id": "org-001",
+    "nombre": "Fundación Corrientes Diversa",
+    "mails": ["contacto@corrientesdiversa.org"],
+    "celularWhatsapp": "+543794765770",
+    "cbu": "0940099330010170690010",
+    "alias": "corrientes.diversa",
+    "nombreRedes": "Dylan",
+    "redesUrl": "https://wa.me/+543794765770"
+  },
+  "torneoInfo": {
+    "id": "torneo-001",
+    "nombre": "Copa Corrientes Diversa 2024",
+    "descripcion": "Bienvenides al primer torneo internacional mixto de deportes LGBTQ+. Podrán participar en voley, fútbol, hockey, natación, atletismo, handball, artes marciales, básquet, padel, tenis, rugby. 🏳️‍🌈 !!!Corrientes les espera !!! 🏳️‍🌈",
+    "imagenPrincipal": "/banners/fondo-sitio.png",
+    "fundamentacionTitulo": "Fundamentación",
+    "fundamentacionTexto": [
+      "En la Diversidad Sexual estamos todas las personas. Los seres humanos somos sexuados, sexuales, y distintos. Tenemos una orientación sexual, un cuerpo sexuado y una identidad de género; y expresamos nuestro género de forma diferente. Hablar de diversidad sexual es dar lugar a que cada persona pueda desplegarse y desarrollarse tal cual es y siente ser, y por sobre todo, es dar lugar a un mayor crecimiento individual, colectivo y como sociedad ampliando la visión para evitar prejuicios y estereotipos sociales establecidos y de este modo evitar todo tipo de discriminación.",
+      "Corrientes tiene al deporte como política de estado y desde allí el deporte adopta un carácter de derecho personal y social garantizado por esta provincia donde a través de la Secretaria de Deportes y la creación del área de Deportes LGBT+ se promueve la formación y el desarrollo armónico del cuerpo a partir de la enseñanza de los deportes que es medio también de re inserción social y mejoro la calidad de vida de sus deportistas en los 12 deportes como ser vóley, futbol, básquet, pádel, tenis, hockey, natación, atletismo, artes marciales (karate, taekwondo, kick boxing), handbol.",
+      "La Fundación Corrientes Diversa con su militancia y con el apoyo del Gobierno Provincial se convirtió en la delegación deportiva más grande del país, luego de que esta provincia fuera sede en el 2019 del TNI (torneo nacional por la inclusión) que albergo a más de 1.000 deportistas de la población LGBT+ en articulación la FALGBT (Federacion Argentina de Lesbianas, Gays, Bisexuales y Trans). Por todo lo mencionado redoblamos la apuesta y esperamos a les deportistas de Argentina y otros paises a vivir un fin de semana de diversidad, deporte, chamamé y carnaval"
+    ]
+  },
+  "banners": [
+    {
+      "id": "banner-001",
+      "encabezado": "Copa Corrientes Diversa 2024 🏆",
+      "urlImagenes": [
+        "/banners/cronograma-1.jpeg",
+        "/banners/cronograma-2.jpeg",
+        "/banners/cronograma-3.jpeg",
+        "/banners/cronograma-4.jpeg",
+        "/banners/cronograma-5.jpeg",
+        "/banners/cronograma-6.jpeg",
+        "/banners/cronograma-7.jpeg",
+        "/banners/cronograma-8.jpeg",
+        "/banners/cronograma-9.jpeg",
+        "/banners/cronograma-10.jpeg",
+        "/banners/cronograma-11.jpeg",
+        "/banners/cronograma-12.jpeg",
+        "/banners/cronograma-13.jpeg"
+      ],
+      "textoPie": "Cronograma del torneo",
+      "urlLocation": ""
+    }
+  ],
+  "deportes": [
+    {
+      "id": "artes-marciales",
+      "nombre": "Artes Marciales",
+      "planilla": "/planillas/Lista Buena Fe Artes Marciales.xlsx",
+      "reglamento": "",
+      "fixture": "",
+      "fechasCompetencia": ["2024-02-11T18:00"],
+      "horarios": ["Domingo 11/2 a las 18 hs"],
+      "locationsNombre": ["Playa Arazaty II"],
+      "locationsUrl": ["https://maps.app.goo.gl/reBpdhaSFnydY9rh7"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/EmIaAbFTkxAEtqQ9OSXaON",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "capibara.ctes", "url": "https://www.instagram.com/capibara.ctes/"},
+          {"nombre": "carpinkick", "url": "https://www.instagram.com/carpinkick/"},
+          {"nombre": "capibara_taekwondo", "url": "https://www.instagram.com/capibara_taekwondo/"}
+        ]
+      }
+    },
+    {
+      "id": "voley",
+      "nombre": "Voley",
+      "planilla": "/planillas/Lista Buena Fe Voley.xlsx",
+      "reglamento": "/reglamentos/reglamento de voley.pdf",
+      "fixture": "/fixtures/TODOSCONTRATODOS voley.pdf",
+      "fechasCompetencia": ["2024-02-10T07:00", "2024-02-10T18:00", "2024-02-11T18:00"],
+      "horarios": ["Sábado 10/2 de 7 a 17 hs (Secretaría de Deportes)", "Sábado 10/2 y Domingo 11/2 18 hs (Playa Arazaty II)"],
+      "locationsNombre": ["Secretaría de Deportes", "Playa Arazaty II"],
+      "locationsUrl": ["https://maps.app.goo.gl/KvDoFRc5pMnqzyHJ6", "https://maps.app.goo.gl/reBpdhaSFnydY9rh7"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/Ha7rxKKJOUKFivOSBtEPil",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "yaguaretes_ctes.voleyinclusivo", "url": "https://www.instagram.com/yaguaretes_ctes.voleyinclusivo/"}
+        ]
+      }
+    },
+    {
+      "id": "basquet",
+      "nombre": "Básquet",
+      "planilla": "/planillas/Lista buena Fe Basquet.xlsx",
+      "reglamento": "/reglamentos/reglamento de basquet.pdf",
+      "fixture": "",
+      "fechasCompetencia": ["2024-02-10T18:00"],
+      "horarios": ["Sábado 10/2 18 hs"],
+      "locationsNombre": ["Secretaría de Deportes"],
+      "locationsUrl": ["https://maps.app.goo.gl/KvDoFRc5pMnqzyHJ6"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/IKIfCxMApOH8gZde2zqeTW",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "mboyere.corr", "url": "https://www.instagram.com/mboyere.corr/"}
+        ]
+      }
+    },
+    {
+      "id": "futbol",
+      "nombre": "Fútbol 5",
+      "planilla": "/planillas/Lista Buena Fe Futbol 5.xlsx",
+      "reglamento": "/reglamentos/REGLAMENTO FÚTBOL 5.pdf",
+      "fixture": "/fixtures/TODOSCONTRATODOS FUTBOL.pdf",
+      "fechasCompetencia": ["2024-02-10T08:00"],
+      "horarios": ["Sábado 10/2 de 8 a 17 hs"],
+      "locationsNombre": ["Boca Unidos Center"],
+      "locationsUrl": ["https://maps.app.goo.gl/65RjfwghYWMtx61B9"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/IDj0Fo7SYlfLlSO9YFEdIS",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "fcyacare", "url": "https://www.instagram.com/fcyacare/"}
+        ]
+      }
+    },
+    {
+      "id": "hockey",
+      "nombre": "Hockey",
+      "planilla": "/planillas/Lista Buena Fe Hockey.xlsx",
+      "reglamento": "/reglamentos/REGLAMENTO HOCKEY.pdf",
+      "fixture": "/fixtures/TODOSCONTRATODOS HOCKEY.pdf",
+      "fechasCompetencia": ["2024-02-10T08:00"],
+      "horarios": ["Sábado 10/2 de 8 a 14 hs"],
+      "locationsNombre": ["CEF 1"],
+      "locationsUrl": ["https://maps.app.goo.gl/B66hAfmvedZX7xybA"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/D1yjSCpqJAZAvbcCPl5oeX",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "katupyrycorrienteshockey", "url": "https://www.instagram.com/katupyrycorrienteshockey/"}
+        ]
+      }
+    },
+    {
+      "id": "handball",
+      "nombre": "Handball",
+      "planilla": "/planillas/Lista Buena Fe Handbol.xlsx",
+      "reglamento": "/reglamentos/REGLAMENTO HANDBALL MIXTO.pdf",
+      "fixture": "",
+      "fechasCompetencia": ["2024-02-10T18:00", "2024-02-11T18:00"],
+      "horarios": ["Sábado 10/2 y Domingo 11/2 18 hs"],
+      "locationsNombre": ["Playa Arazaty II"],
+      "locationsUrl": ["https://maps.app.goo.gl/reBpdhaSFnydY9rh7"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/LpBEZBQldvJDS5bQ6bUtFn",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "caraya_handball", "url": "https://www.instagram.com/caraya_handball/"}
+        ]
+      }
+    },
+    {
+      "id": "rugby",
+      "nombre": "Rugby",
+      "planilla": "/planillas/Lista Buena Fe Rugby.xlsx",
+      "reglamento": "/reglamentos/reglamento de rugby.pdf",
+      "fixture": "",
+      "fechasCompetencia": ["2024-02-10T18:00", "2024-02-11T18:00"],
+      "horarios": ["Sábado 10/2 y Domingo 11/2 18 hs"],
+      "locationsNombre": ["Playa Arazaty II"],
+      "locationsUrl": ["https://maps.app.goo.gl/6GAt3WdrYzjpg2ka6"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/F4kfBfchlZ39BGTmT3NUi0",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "aguaraguazuctes", "url": "https://www.instagram.com/aguaraguazuctes/"}
+        ]
+      }
+    },
+    {
+      "id": "padel",
+      "nombre": "Pádel",
+      "planilla": "/planillas/Lista Buena Fe Padel.xlsx",
+      "reglamento": "/reglamentos/Reglamento padel.pdf",
+      "fixture": "",
+      "fechasCompetencia": ["2024-02-10T08:00", "2024-02-11T08:00"],
+      "horarios": ["Sábado 10/2 y Domingo 11/2 de 8 a 13 hs"],
+      "locationsNombre": ["Tenis Club"],
+      "locationsUrl": ["https://maps.app.goo.gl/xb2idSBoLgv2qMHh8"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/Ey25KeDzS6fDZ8QxNF9yOf",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "angaupadelcorrientes", "url": "https://www.instagram.com/angaupadelcorrientes/"}
+        ]
+      }
+    },
+    {
+      "id": "tenis",
+      "nombre": "Tenis",
+      "planilla": "/planillas/Lista Buena Fe Tenis.xlsx",
+      "reglamento": "/reglamentos/REGLAMENTO TENIS.pdf",
+      "fixture": "",
+      "fechasCompetencia": ["2024-02-10T08:00", "2024-02-11T08:00"],
+      "horarios": ["Sábado 10/2 y Domingo 11/2 de 8 a 13 hs"],
+      "locationsNombre": ["Tenis Club"],
+      "locationsUrl": ["https://maps.app.goo.gl/xb2idSBoLgv2qMHh8"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/CHBDov3ODxh6H9yBJ3AKgT",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "pomberitostenisdiverso", "url": "https://www.instagram.com/pomberitostenisdiverso/"}
+        ]
+      }
+    },
+    {
+      "id": "natacion",
+      "nombre": "Natación",
+      "planilla": "/planillas/acta de buena fe natacion.xlsx",
+      "reglamento": "/reglamentos/REGLAMENTOS NATACIÓN.pdf",
+      "fixture": "",
+      "fechasCompetencia": ["2024-02-10T09:00"],
+      "horarios": ["Sábado 10/2 de 9 a 13:30 hs"],
+      "locationsNombre": ["CEF 1"],
+      "locationsUrl": ["https://maps.app.goo.gl/H4dLaVGJdt1B69346"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/L569BPb3nUP8DhXW8Nx2uZ",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "arirayscorrientes", "url": "https://www.instagram.com/arirayscorrientes/"}
+        ]
+      }
+    },
+    {
+      "id": "atletismo",
+      "nombre": "Atletismo",
+      "planilla": "/planillas/Lista Buena Fe AGUAPÉ ATLETISMO.xlsx",
+      "reglamento": "",
+      "fixture": "",
+      "fechasCompetencia": ["2024-02-12T17:00"],
+      "horarios": ["Lunes 12/2 17 hs"],
+      "locationsNombre": ["CEF 17"],
+      "locationsUrl": ["https://maps.app.goo.gl/ACtwKEGBQaUphdn76"],
+      "grupoUrlWhatsapp": "https://chat.whatsapp.com/GTSaEPUWTPgI825sjrZlxR",
+      "redesSociales": {
+        "instagram": [
+          {"nombre": "aguapeatletismocts", "url": "https://www.instagram.com/aguapeatletismocts/"}
+        ]
+      }
+    }
+  ],
+  "equipos": [],
+  "podios": [],
+  "sponsors": [
+    {
+      "id": "sponsor-001",
+      "nombre": "Gobierno de Corrientes",
+      "urlImage": "/auspiciantes/gobierno.jpg",
+      "redesNombre": "",
+      "redesUrl": ""
+    },
+    {
+      "id": "sponsor-002",
+      "nombre": "Municipalidad",
+      "urlImage": "/auspiciantes/muni.jpg",
+      "redesNombre": "",
+      "redesUrl": ""
+    },
+    {
+      "id": "sponsor-003",
+      "nombre": "Secretaría de Deportes",
+      "urlImage": "/auspiciantes/sds.jpeg",
+      "redesNombre": "",
+      "redesUrl": ""
+    },
+    {
+      "id": "sponsor-004",
+      "nombre": "ACDP",
+      "urlImage": "/auspiciantes/ACDP.jpg",
+      "redesNombre": "",
+      "redesUrl": ""
+    },
+    {
+      "id": "sponsor-005",
+      "nombre": "Educación Física",
+      "urlImage": "/auspiciantes/EDUC FISICA.jpg",
+      "redesNombre": "",
+      "redesUrl": ""
+    },
+    {
+      "id": "sponsor-006",
+      "nombre": "FUNDEGH",
+      "urlImage": "/auspiciantes/logotipo de fundegh fondo blanco.png",
+      "redesNombre": "",
+      "redesUrl": ""
+    },
+    {
+      "id": "sponsor-007",
+      "nombre": "Castillo Robert",
+      "urlImage": "/auspiciantes/castillo.png",
+      "redesNombre": "",
+      "redesUrl": ""
+    }
+  ]
+}
