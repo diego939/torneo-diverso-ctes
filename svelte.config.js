@@ -7,12 +7,12 @@ const config = {
   // for more information about preprocessors
   preprocess: vitePreprocess(),
 
-  kit: {
-    adapter: adapter({
-      // Configuración para Vercel
-      runtime: "nodejs18.x",
-    }),
-  },
+   kit: {
+     adapter: adapter({
+       // Configuración para Vercel
+       runtime: "nodejs20.x",
+     }),
+   },
 };
 
 export default config;
