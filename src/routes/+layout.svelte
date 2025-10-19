@@ -84,8 +84,8 @@
         alt="Fundación Corrientes Diversa"
       />
       <span
-        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-        >Copa Diversa</span
+        class="self-center text-xs md:text-sm lg:text-md font-semibold whitespace-nowrap dark:text-white"
+        >Copa Corrientes Diversa</span
       >
     </button>
 
@@ -140,7 +140,7 @@
             on:click={() => navigateTo("/sponsors")}
             class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 w-full text-left"
           >
-            <i class="bi bi-star-fill mr-2"></i>Auspiciantes
+            <i class="bi bi-star-fill mr-2"></i>Sponsors
           </button>
         </li>
         <li>

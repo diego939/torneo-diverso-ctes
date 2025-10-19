@@ -13,7 +13,7 @@
     <h1
       class="text-center text-2xl md:text-4xl font-bold text-blue-900 mb-3 md:mb-4"
     >
-      Auspiciantes
+      Sponsors
     </h1>
     <p class="text-center text-sm md:text-lg text-gray-600 mb-8 md:mb-12 px-2">
       Agradecemos el apoyo de nuestros sponsors que hacen posible este evento
