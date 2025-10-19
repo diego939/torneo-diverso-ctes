@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "prisma generate && vite build",
     "preview": "vite preview",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -16,13 +16,15 @@
     "prisma:studio": "prisma studio",
     "prisma:seed": "prisma db seed",
     "db:push": "prisma db push",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx prisma/seed.ts",
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.1.0",
+    "@sveltejs/adapter-vercel": "^6.0.0",
     "@types/multer": "^2.0.0",
     "@types/uuid": "^10.0.0",
     "flowbite-svelte": "^1.17.4",
