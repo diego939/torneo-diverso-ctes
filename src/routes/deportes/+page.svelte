@@ -116,53 +116,81 @@
             </div>
           </div>
 
-          <!-- Recursos disponibles -->
+          <!-- Card de ver más información -->
           <div class="mb-6 md:mb-8">
-            <h3
-              class="text-lg md:text-xl font-bold text-gray-800 mb-4 text-center"
+            <div
+              class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl p-6 md:p-8 text-white shadow-lg border-4 border-white hover:shadow-xl transition-all duration-300"
             >
-              📋 Recursos Disponibles
-            </h3>
-            <div class="flex flex-wrap justify-center gap-3 md:gap-4">
-              {#if deporte.reglamento}
-                <div
-                  class="bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 flex items-center gap-2 min-w-[140px]"
-                >
-                  <i class="bi bi-file-text text-blue-600 text-lg"></i>
-                  <span class="font-medium text-blue-800">Reglamento</span>
+              <div
+                class="flex flex-col md:flex-row items-center justify-between gap-4"
+              >
+                <div class="flex-1 text-center md:text-left">
+                  <h3 class="text-xl md:text-2xl font-bold mb-2">
+                    📋 Información Completa del Deporte
+                  </h3>
+                  <p class="text-sm md:text-base opacity-90 mb-3">
+                    Para acceder a la información completa del deporte, haz clic
+                    en el botón "Ver más"
+                  </p>
+                  <div
+                    class="flex flex-wrap justify-center md:justify-start gap-2 text-xs md:text-sm"
+                  >
+                    {#if deporte.horarios && deporte.horarios.length > 0}
+                      <span
+                        class="bg-blue-500 bg-opacity-20 px-2 py-1 rounded-full"
+                      >
+                        ⏰ Horarios
+                      </span>
+                    {/if}
+                    {#if deporte.locationsNombre && deporte.locationsNombre.length > 0}
+                      <span
+                        class="bg-green-500 bg-opacity-20 px-2 py-1 rounded-full"
+                      >
+                        📍 Lugares
+                      </span>
+                    {/if}
+                    {#if deporte.reglamento}
+                      <span
+                        class="bg-yellow-500 bg-opacity-20 px-2 py-1 rounded-full"
+                      >
+                        📄 Reglamento
+                      </span>
+                    {/if}
+                    {#if deporte.fixture}
+                      <span
+                        class="bg-blue-500 bg-opacity-20 px-2 py-1 rounded-full"
+                      >
+                        📊 Fixture
+                      </span>
+                    {/if}
+                    {#if deporte.planilla}
+                      <span
+                        class="bg-green-500 bg-opacity-20 px-2 py-1 rounded-full"
+                      >
+                        📋 Planilla
+                      </span>
+                    {/if}
+                    {#if deporte.grupoUrlWhatsapp}
+                      <span
+                        class="bg-blue-500 bg-opacity-20 px-2 py-1 rounded-full"
+                      >
+                        💬 WhatsApp
+                      </span>
+                    {/if}
+                  </div>
                 </div>
-              {/if}
-              {#if deporte.fixture}
-                <div
-                  class="bg-green-50 border border-green-200 rounded-lg p-3 md:p-4 flex items-center gap-2 min-w-[140px]"
-                >
-                  <i class="bi bi-diagram-3 text-green-600 text-lg"></i>
-                  <span class="font-medium text-green-800">Fixture</span>
+                <div class="flex-shrink-0">
+                  <a
+                    href="/deportes/{deporte.id}"
+                    class="inline-flex items-center gap-2 bg-white text-indigo-600 font-bold px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
+                  >
+                    <i class="bi bi-eye-fill"></i>
+                    <span>Ver más</span>
+                    <i class="bi bi-arrow-right"></i>
+                  </a>
                 </div>
-              {/if}
-              {#if deporte.planilla}
-                <div
-                  class="bg-purple-50 border border-purple-200 rounded-lg p-3 md:p-4 flex items-center gap-2 min-w-[140px]"
-                >
-                  <i
-                    class="bi bi-file-earmark-spreadsheet text-purple-600 text-lg"
-                  ></i>
-                  <span class="font-medium text-purple-800">Planilla</span>
-                </div>
-              {/if}
+              </div>
             </div>
-          </div>
-
-          <!-- Botón de acción -->
-          <div class="text-center">
-            <a
-              href="/deportes/{deporte.id}"
-              class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-6 md:px-8 py-3 md:py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              <i class="bi bi-eye-fill"></i>
-              <span>Ver Detalles del Deporte</span>
-              <i class="bi bi-arrow-right"></i>
-            </a>
           </div>
         </div>
       </div>
