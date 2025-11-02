@@ -22,8 +22,10 @@
     textoPie: "",
     urlLocation: "",
     torneoId: 0,
-    imagenes: [] as string[],
   };
+
+  // Imágenes separadas para mejor reactividad
+  let bannerImagenes: string[] = [];
 
   // Obtener torneos disponibles (asumiendo que hay una relación)
   let torneos: any[] = [];
@@ -50,8 +52,8 @@
       textoPie: "",
       urlLocation: "",
       torneoId: torneos.length > 0 ? torneos[0].id : 0,
-      imagenes: [],
     };
+    bannerImagenes = [];
   }
 
   function startEdit(banner: any) {
@@ -62,8 +64,10 @@
       textoPie: banner.textoPie,
       urlLocation: banner.urlLocation,
       torneoId: banner.torneoId,
-      imagenes: Array.isArray(banner.urlImagenes) ? banner.urlImagenes : [],
     };
+    bannerImagenes = Array.isArray(banner.urlImagenes)
+      ? banner.urlImagenes
+      : [];
   }
 
   function cancelForm() {
@@ -74,15 +78,15 @@
       textoPie: "",
       urlLocation: "",
       torneoId: torneos.length > 0 ? torneos[0].id : 0,
-      imagenes: [],
     };
+    bannerImagenes = [];
   }
 
   function toggleImage(imageUrl: string) {
-    if (formData.imagenes.includes(imageUrl)) {
-      formData.imagenes = formData.imagenes.filter((img) => img !== imageUrl);
+    if (bannerImagenes.includes(imageUrl)) {
+      bannerImagenes = bannerImagenes.filter((img) => img !== imageUrl);
     } else {
-      formData.imagenes = [...formData.imagenes, imageUrl];
+      bannerImagenes = [...bannerImagenes, imageUrl];
     }
   }
 
@@ -126,7 +130,7 @@
         // Agregar la nueva imagen a la lista de disponibles
         availableImages = [...availableImages, result.url].sort();
         // También agregarla a las imágenes seleccionadas
-        formData.imagenes = [...formData.imagenes, result.url];
+        bannerImagenes = [...bannerImagenes, result.url];
         toast.success("Imagen subida exitosamente");
       } else {
         toast.error(result.error || "Error subiendo imagen");
@@ -170,28 +174,28 @@
   // Funciones para reordenar imágenes
   function moveImageUp(index: number) {
     if (index > 0) {
-      const newImages = [...formData.imagenes];
+      const newImages = [...bannerImagenes];
       [newImages[index - 1], newImages[index]] = [
         newImages[index],
         newImages[index - 1],
       ];
-      formData.imagenes = newImages;
+      bannerImagenes = newImages;
     }
   }
 
   function moveImageDown(index: number) {
-    if (index < formData.imagenes.length - 1) {
-      const newImages = [...formData.imagenes];
+    if (index < bannerImagenes.length - 1) {
+      const newImages = [...bannerImagenes];
       [newImages[index], newImages[index + 1]] = [
         newImages[index + 1],
         newImages[index],
       ];
-      formData.imagenes = newImages;
+      bannerImagenes = newImages;
     }
   }
 
   function removeImageFromBanner(imageUrl: string) {
-    formData.imagenes = formData.imagenes.filter((img) => img !== imageUrl);
+    bannerImagenes = bannerImagenes.filter((img) => img !== imageUrl);
   }
 </script>
 
@@ -337,6 +341,11 @@
               <input type="hidden" name="id" value={editingBanner.id} />
             {/if}
 
+            <!-- Campos ocultos para mantener el orden de las imágenes -->
+            {#each bannerImagenes as imageUrl}
+              <input type="hidden" name="imagenes" value={imageUrl} />
+            {/each}
+
             <div class="grid md:grid-cols-2 gap-6">
               <!-- Encabezado -->
               <div class="md:col-span-2">
@@ -463,13 +472,13 @@
             </div>
 
             <!-- Imágenes seleccionadas para el banner -->
-            {#if formData.imagenes.length > 0}
+            {#if bannerImagenes.length > 0}
               <div class="mt-6">
                 <h3 class="text-lg font-medium text-gray-700 mb-4">
-                  Imágenes del Banner ({formData.imagenes.length})
+                  Imágenes del Banner ({bannerImagenes.length})
                 </h3>
                 <div class="space-y-3">
-                  {#each formData.imagenes as imageUrl, index}
+                  {#each bannerImagenes as imageUrl, index}
                     <div
                       class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
                     >
@@ -499,7 +508,7 @@
                         <button
                           type="button"
                           on:click={() => moveImageDown(index)}
-                          disabled={index === formData.imagenes.length - 1}
+                          disabled={index === bannerImagenes.length - 1}
                           class="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
                           title="Mover abajo"
                         >
@@ -533,14 +542,13 @@
                     <label class="cursor-pointer">
                       <input
                         type="checkbox"
-                        name="imagenes"
                         value={imageUrl}
-                        checked={formData.imagenes.includes(imageUrl)}
+                        checked={bannerImagenes.includes(imageUrl)}
                         on:change={() => toggleImage(imageUrl)}
                         class="sr-only"
                       />
                       <div
-                        class="border-2 rounded-lg p-2 transition-colors {formData.imagenes.includes(
+                        class="border-2 rounded-lg p-2 transition-colors {bannerImagenes.includes(
                           imageUrl
                         )
                           ? 'border-blue-500 bg-blue-50'
