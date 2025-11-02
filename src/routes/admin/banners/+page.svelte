@@ -203,12 +203,14 @@
   <title>Banners - Panel de Administración</title>
 </svelte:head>
 
-<div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-  <div class="text-center mb-12">
-    <h1 class="text-3xl mb-2 drop-shadow-lg text-gray-800">
+<div class="max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
+  <div class="text-center mb-8 md:mb-12">
+    <h1 class="text-2xl md:text-3xl mb-2 drop-shadow-lg text-gray-800">
       🎨 Gestión de Banners
     </h1>
-    <p class="text-gray-600">Administra los banners del torneo</p>
+    <p class="text-sm md:text-base text-gray-600">
+      Administra los banners del torneo
+    </p>
   </div>
 
   <!-- Botón para crear nuevo banner -->
@@ -216,54 +218,127 @@
     <button
       type="button"
       on:click={startCreate}
-      class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+      class="bg-blue-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 text-sm md:text-base w-full sm:w-auto justify-center"
     >
-      <span>➕</span>
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 5v14m7-7H5"
+        />
+      </svg>
       Nuevo Banner
     </button>
   </div>
 
   <!-- Lista de banners -->
-  <div class="grid gap-6">
+  <div class="grid gap-4 md:gap-6">
     {#each banners as banner}
-      <div class="bg-white rounded-lg shadow-lg p-6">
-        <div class="flex justify-between items-start mb-4">
-          <div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">
+      <div class="bg-white rounded-lg shadow-lg p-4 md:p-6">
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4"
+        >
+          <div class="flex-1 min-w-0">
+            <h3
+              class="text-lg md:text-xl font-semibold text-gray-800 mb-2 break-words"
+            >
               {banner.encabezado}
             </h3>
-            <p class="text-gray-600 mb-2">{banner.textoPie}</p>
+            <p class="text-sm md:text-base text-gray-600 mb-2 break-words">
+              {banner.textoPie}
+            </p>
             {#if banner.urlLocation}
-              <p class="text-sm text-blue-600">
+              <p class="text-xs md:text-sm text-blue-600 truncate">
                 <a
                   href={banner.urlLocation}
                   target="_blank"
                   rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1"
+                  title={banner.urlLocation}
                 >
-                  🔗 {banner.urlLocation}
+                  <svg
+                    class="w-4 h-4 flex-shrink-0"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13.828 10.172a4 4 0 0 0-5.656 0l-4 4a4 4 0 1 0 5.656 5.656l1.102-1.101m-.758-4.899a4 4 0 0 0 5.656 0l4-4a4 4 0 0 0-5.656-5.656l-1.1 1.1"
+                    />
+                  </svg>
+                  <span class="truncate">{banner.urlLocation}</span>
                 </a>
               </p>
             {/if}
-            <p class="text-sm text-gray-500 mt-2">
+            <p class="text-xs md:text-sm text-gray-500 mt-2">
               Torneo: {banner.torneo.nombre}
             </p>
           </div>
-          <div class="flex gap-2">
+          <div class="flex gap-2 flex-shrink-0">
             <button
               type="button"
               on:click={() => startEdit(banner)}
-              class="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
               title="Editar"
             >
-              ✏️
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
+                />
+              </svg>
             </button>
             <button
               type="button"
               on:click={() => confirmDelete(banner)}
-              class="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+              class="p-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
               title="Eliminar"
             >
-              🗑️
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+                />
+              </svg>
             </button>
           </div>
         </div>
@@ -271,14 +346,14 @@
         <!-- Imágenes del banner -->
         {#if Array.isArray(banner.urlImagenes) && banner.urlImagenes.length > 0}
           <div
-            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center"
           >
             {#each banner.urlImagenes as imageUrl}
               <div class="relative w-full max-w-xs">
                 <img
                   src={String(imageUrl)}
                   alt=""
-                  class="w-full h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36 object-cover rounded border hover:scale-105 transition-transform duration-200"
+                  class="w-full h-32 sm:h-24 md:h-28 lg:h-32 xl:h-36 object-cover rounded border hover:scale-105 transition-transform duration-200"
                 />
               </div>
             {/each}
@@ -288,10 +363,12 @@
         {/if}
       </div>
     {:else}
-      <div class="bg-white rounded-lg shadow-lg p-12 text-center">
-        <div class="text-6xl mb-4">🎨</div>
-        <h3 class="text-xl text-gray-600 mb-2">No hay banners</h3>
-        <p class="text-gray-500">Crea tu primer banner para comenzar</p>
+      <div class="bg-white rounded-lg shadow-lg p-8 md:p-12 text-center">
+        <div class="text-4xl md:text-6xl mb-4">🎨</div>
+        <h3 class="text-lg md:text-xl text-gray-600 mb-2">No hay banners</h3>
+        <p class="text-sm md:text-base text-gray-500">
+          Crea tu primer banner para comenzar
+        </p>
       </div>
     {/each}
   </div>
@@ -304,17 +381,34 @@
       <div
         class="bg-white rounded-lg shadow-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto"
       >
-        <div class="p-6">
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-semibold text-gray-800">
+        <div class="p-4 md:p-6">
+          <div class="flex justify-between items-center mb-4 md:mb-6">
+            <h2 class="text-xl md:text-2xl font-semibold text-gray-800">
               {editingBanner ? "Editar Banner" : "Nuevo Banner"}
             </h2>
             <button
               type="button"
               on:click={cancelForm}
-              class="text-gray-500 hover:text-gray-700 text-2xl"
+              class="p-1 text-gray-500 hover:text-gray-700"
+              title="Cerrar"
             >
-              ×
+              <svg
+                class="w-6 h-6"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </button>
           </div>
 
@@ -346,7 +440,7 @@
               <input type="hidden" name="imagenes" value={imageUrl} />
             {/each}
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 gap-4 md:gap-6">
               <!-- Encabezado -->
               <div class="md:col-span-2">
                 <label
@@ -361,7 +455,7 @@
                   name="encabezado"
                   bind:value={formData.encabezado}
                   required
-                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Título del banner"
                 />
               </div>
@@ -379,8 +473,8 @@
                   name="textoPie"
                   bind:value={formData.textoPie}
                   required
-                  rows="3"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  rows="4"
+                  class="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                   placeholder="Texto que aparecerá en la parte inferior del banner"
                 ></textarea>
               </div>
@@ -398,7 +492,7 @@
                   id="urlLocation"
                   name="urlLocation"
                   bind:value={formData.urlLocation}
-                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="https://ejemplo.com"
                 />
               </div>
@@ -416,7 +510,7 @@
                   name="torneoId"
                   bind:value={formData.torneoId}
                   required
-                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   {#each torneos as torneo}
                     <option value={torneo.id}>{torneo.nombre}</option>
@@ -426,12 +520,14 @@
             </div>
 
             <!-- Subida de nuevas imágenes -->
-            <div class="mt-6">
-              <h3 class="text-lg font-medium text-gray-700 mb-4">
+            <div class="mt-4 md:mt-6">
+              <h3
+                class="text-base md:text-lg font-medium text-gray-700 mb-3 md:mb-4"
+              >
                 Subir Nueva Imagen
               </h3>
               <div
-                class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center transition-colors {dragOver
+                class="border-2 border-dashed border-gray-300 rounded-lg p-4 md:p-6 text-center transition-colors {dragOver
                   ? 'border-blue-500 bg-blue-50'
                   : 'hover:border-gray-400'}"
                 role="region"
@@ -452,14 +548,30 @@
                   {#if uploadingFile}
                     <div class="text-blue-600">
                       <div
-                        class="animate-spin w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-2"
+                        class="animate-spin w-6 h-6 md:w-8 md:h-8 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-2"
                       ></div>
-                      <p class="text-sm">Subiendo imagen...</p>
+                      <p class="text-xs md:text-sm">Subiendo imagen...</p>
                     </div>
                   {:else}
                     <div class="text-gray-600">
-                      <div class="text-4xl mb-2">📁</div>
-                      <p class="text-sm mb-2">
+                      <svg
+                        class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-2 text-gray-400"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 4v16m8-8H4"
+                        />
+                      </svg>
+                      <p class="text-xs md:text-sm mb-2">
                         Arrastra una imagen aquí o haz clic para seleccionar
                       </p>
                       <p class="text-xs text-gray-500">
@@ -473,54 +585,108 @@
 
             <!-- Imágenes seleccionadas para el banner -->
             {#if bannerImagenes.length > 0}
-              <div class="mt-6">
-                <h3 class="text-lg font-medium text-gray-700 mb-4">
+              <div class="mt-4 md:mt-6">
+                <h3
+                  class="text-base md:text-lg font-medium text-gray-700 mb-3 md:mb-4"
+                >
                   Imágenes del Banner ({bannerImagenes.length})
                 </h3>
-                <div class="space-y-3">
+                <div class="space-y-2 md:space-y-3">
                   {#each bannerImagenes as imageUrl, index}
                     <div
-                      class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
+                      class="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-gray-50 rounded-lg"
                     >
-                      <span class="text-sm text-gray-500 w-6">{index + 1}.</span
+                      <span
+                        class="text-xs md:text-sm text-gray-500 w-6 flex-shrink-0"
+                        >{index + 1}.</span
                       >
                       <img
                         src={imageUrl}
                         alt=""
-                        class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded border hover:scale-105 transition-transform duration-200"
+                        class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-cover rounded border hover:scale-105 transition-transform duration-200 flex-shrink-0"
                       />
-                      <div class="flex-1">
-                        <p class="text-sm font-medium text-gray-800">
+                      <div class="flex-1 min-w-0">
+                        <p
+                          class="text-xs md:text-sm font-medium text-gray-800 truncate"
+                        >
                           {imageUrl.split("/").pop()}
                         </p>
                         <p class="text-xs text-gray-500">Imagen del banner</p>
                       </div>
-                      <div class="flex gap-1">
+                      <div class="flex gap-1 flex-shrink-0">
                         <button
                           type="button"
                           on:click={() => moveImageUp(index)}
                           disabled={index === 0}
-                          class="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
+                          class="p-1.5 md:p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
                           title="Mover arriba"
                         >
-                          ↑
+                          <svg
+                            class="w-4 h-4"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 15l7-7 7 7"
+                            />
+                          </svg>
                         </button>
                         <button
                           type="button"
                           on:click={() => moveImageDown(index)}
                           disabled={index === bannerImagenes.length - 1}
-                          class="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
+                          class="p-1.5 md:p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
                           title="Mover abajo"
                         >
-                          ↓
+                          <svg
+                            class="w-4 h-4"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
                         </button>
                         <button
                           type="button"
                           on:click={() => removeImageFromBanner(imageUrl)}
-                          class="p-2 text-red-500 hover:text-red-700"
+                          class="p-1.5 md:p-2 text-red-500 hover:text-red-700"
                           title="Quitar del banner"
                         >
-                          ×
+                          <svg
+                            class="w-4 h-4"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke="currentColor"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
                         </button>
                       </div>
                     </div>
@@ -530,12 +696,14 @@
             {/if}
 
             <!-- Selección de imágenes disponibles -->
-            <div class="mt-6">
-              <h3 class="text-lg font-medium text-gray-700 mb-4">
+            <div class="mt-4 md:mt-6">
+              <h3
+                class="text-base md:text-lg font-medium text-gray-700 mb-3 md:mb-4"
+              >
                 Imágenes Disponibles
               </h3>
               <div
-                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-h-80 overflow-y-auto justify-items-center"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 max-h-80 overflow-y-auto justify-items-center"
               >
                 {#each availableImages as imageUrl}
                   <div class="relative w-full max-w-xs">
@@ -557,7 +725,7 @@
                         <img
                           src={imageUrl}
                           alt=""
-                          class="w-full h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 object-cover rounded hover:scale-105 transition-transform duration-200"
+                          class="w-full h-32 sm:h-20 md:h-24 lg:h-28 xl:h-32 object-cover rounded hover:scale-105 transition-transform duration-200"
                         />
                         <div class="text-center mt-2">
                           <span class="text-xs text-gray-600">
@@ -578,18 +746,20 @@
             </div>
 
             <!-- Botones -->
-            <div class="flex justify-end gap-4 mt-6 pt-6 border-t">
+            <div
+              class="flex flex-col sm:flex-row justify-end gap-3 md:gap-4 mt-4 md:mt-6 pt-4 md:pt-6 border-t"
+            >
               <button
                 type="button"
                 on:click={cancelForm}
-                class="px-6 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                class="px-4 md:px-6 py-2 text-sm md:text-base text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors w-full sm:w-auto"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
                 disabled={isLoading}
-                class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                class="px-4 md:px-6 py-2 text-sm md:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors w-full sm:w-auto"
               >
                 {isLoading
                   ? "Guardando..."
@@ -609,20 +779,24 @@
     <div
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
     >
-      <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
-        <div class="p-6">
-          <h3 class="text-lg font-semibold text-gray-800 mb-4">
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+        <div class="p-4 md:p-6">
+          <h3
+            class="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4"
+          >
             Confirmar Eliminación
           </h3>
-          <p class="text-gray-600 mb-6">
+          <p
+            class="text-sm md:text-base text-gray-600 mb-4 md:mb-6 break-words"
+          >
             ¿Estás seguro de que quieres eliminar el banner "{bannerToDelete.encabezado}"?
             Esta acción no se puede deshacer.
           </p>
-          <div class="flex justify-end gap-4">
+          <div class="flex flex-col sm:flex-row justify-end gap-3 md:gap-4">
             <button
               type="button"
               on:click={cancelDelete}
-              class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              class="px-4 py-2 text-sm md:text-base text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors w-full sm:w-auto"
             >
               Cancelar
             </button>
@@ -649,7 +823,7 @@
               <input type="hidden" name="id" value={bannerToDelete.id} />
               <button
                 type="submit"
-                class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                class="px-4 py-2 text-sm md:text-base bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors w-full sm:w-auto"
               >
                 Eliminar
               </button>

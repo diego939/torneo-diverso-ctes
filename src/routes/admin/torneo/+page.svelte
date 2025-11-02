@@ -272,38 +272,44 @@
   <title>Torneo - Panel de Administración</title>
 </svelte:head>
 
-<div class="max-w-6xl mx-auto p-8">
-  <div class="text-center mb-12 text-gray-800">
-    <h1 class="text-3xl mb-2 drop-shadow-lg">🏆 Gestión del Torneo</h1>
-    <p class="opacity-90">
+<div class="max-w-6xl mx-auto p-4 md:p-8">
+  <div class="text-center mb-8 md:mb-12 text-gray-800">
+    <h1 class="text-2xl md:text-3xl mb-2 drop-shadow-lg">
+      🏆 Gestión del Torneo
+    </h1>
+    <p class="text-sm md:text-base opacity-90">
       Administra la información general del torneo y su organizador
     </p>
   </div>
 
   {#if !torneo && !isEditing}
-    <div class="bg-white rounded-2xl p-8 shadow-lg text-center mb-8">
-      <div class="text-6xl mb-4">🏆</div>
-      <h2 class="text-gray-800 mb-4">No hay torneo configurado</h2>
-      <p class="text-gray-600 mb-6">
+    <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg text-center mb-8">
+      <div class="text-4xl md:text-6xl mb-4">🏆</div>
+      <h2 class="text-lg md:text-xl text-gray-800 mb-4">
+        No hay torneo configurado
+      </h2>
+      <p class="text-sm md:text-base text-gray-600 mb-6">
         Crea la información del torneo para comenzar.
       </p>
       <button
         on:click={startEditing}
-        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors"
       >
         Crear Torneo
       </button>
     </div>
   {:else}
-    <div class="bg-white rounded-2xl p-8 shadow-lg">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">
+    <div class="bg-white rounded-2xl p-4 md:p-8 shadow-lg">
+      <div
+        class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6"
+      >
+        <h2 class="text-xl md:text-2xl font-bold text-gray-800">
           {torneo ? "Información del Torneo" : "Nuevo Torneo"}
         </h2>
         {#if !isEditing}
           <button
             on:click={startEditing}
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-colors w-full sm:w-auto"
           >
             Editar
           </button>
@@ -324,7 +330,7 @@
               id="nombre"
               type="text"
               bind:value={formData.nombre}
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              class="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Ej: Copa Corrientes Diversa 2024"
               required
             />
@@ -342,7 +348,7 @@
               id="descripcion"
               bind:value={formData.descripcion}
               rows="4"
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              class="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               placeholder="Describe el torneo, sus objetivos y características..."
               required
             ></textarea>
@@ -357,11 +363,13 @@
             <!-- Preview de imagen actual -->
             {#if formData.imagenPrincipal}
               <div class="mb-4">
-                <p class="text-sm text-gray-600 mb-2">Imagen actual:</p>
+                <p class="text-xs md:text-sm text-gray-600 mb-2">
+                  Imagen actual:
+                </p>
                 <img
                   src={formData.imagenPrincipal}
                   alt="Imagen de fondo actual"
-                  class="max-w-xs h-32 object-cover rounded-lg border border-gray-300"
+                  class="max-w-full sm:max-w-xs h-32 object-cover rounded-lg border border-gray-300"
                 />
               </div>
             {/if}
@@ -406,9 +414,26 @@
                     <button
                       type="button"
                       on:click={() => (fondoFile = null)}
-                      class="text-red-500 hover:text-red-700 text-sm"
+                      class="p-1 text-red-500 hover:text-red-700"
+                      title="Eliminar"
                     >
-                      ✕
+                      <svg
+                        class="w-5 h-5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
                     </button>
                   </div>
                 </div>
@@ -450,7 +475,7 @@
             <select
               id="organizadorId"
               bind:value={formData.organizadorId}
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              class="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value={0}>Seleccionar organizador...</option>
               {#each organizadores as org}
@@ -471,7 +496,7 @@
               id="fundamentacionTitulo"
               type="text"
               bind:value={formData.fundamentacionTitulo}
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              class="w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="Ej: ¿Por qué este torneo?"
               required
             />
@@ -479,7 +504,9 @@
 
           <!-- Textos de Fundamentación -->
           <div>
-            <div class="flex justify-between items-center mb-2">
+            <div
+              class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-2"
+            >
               <span class="block text-sm font-medium text-gray-700">
                 Textos de Fundamentación
               </span>
@@ -487,28 +514,75 @@
                 type="button"
                 on:click={() =>
                   (showFundamentacionEditor = !showFundamentacionEditor)}
-                class="text-blue-600 hover:text-blue-700 text-sm font-medium"
+                class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium w-full sm:w-auto"
               >
-                {showFundamentacionEditor ? "Ocultar Editor" : "Mostrar Editor"}
+                {#if showFundamentacionEditor}
+                  <svg
+                    class="w-4 h-4"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 12c0-1.3.6-2.4 1.5-3.2L9 4l1.5 1.5L12 7l4.5-4.5L18 4l4.5 4.5L18 13l-1.5 1.5L12 10l-4.5 4.5L6 16l-2.5-2.5C2.6 14.4 3 13.3 3 12Z"
+                    />
+                  </svg>
+                  Ocultar Editor
+                {:else}
+                  <svg
+                    class="w-4 h-4"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                    />
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7Z"
+                    />
+                  </svg>
+                  Mostrar Editor
+                {/if}
               </button>
             </div>
 
             {#if showFundamentacionEditor}
-              <div class="border border-gray-300 rounded-lg p-4 space-y-3">
+              <div
+                class="border border-gray-300 rounded-lg p-3 md:p-4 space-y-3"
+              >
                 <!-- Agregar nuevo texto -->
-                <div class="flex gap-2">
+                <div class="flex flex-col sm:flex-row gap-2">
                   <input
                     type="text"
                     bind:value={nuevoTexto}
                     placeholder="Nuevo texto de fundamentación..."
-                    class="flex-1 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    class="flex-1 px-3 py-2 text-sm md:text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     on:keydown={(e) =>
                       e.key === "Enter" && addFundamentacionTexto()}
                   />
                   <button
                     type="button"
                     on:click={addFundamentacionTexto}
-                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-medium transition-colors"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm md:text-base font-medium transition-colors whitespace-nowrap"
                   >
                     Agregar
                   </button>
@@ -518,16 +592,13 @@
                 <div class="space-y-2">
                   {#each fundamentacionTextos as texto, index}
                     <div class="flex items-center gap-2 p-2 bg-gray-50 rounded">
-                      <span class="text-sm text-gray-500 w-6">{index + 1}.</span
-                      >
-
                       {#if editingIndex === index}
                         <!-- Modo edición -->
-                        <div class="flex-1 flex gap-2">
+                        <div class="flex-1 flex flex-col sm:flex-row gap-2">
                           <textarea
                             bind:value={editingText}
-                            class="flex-1 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                            rows="8"
+                            class="flex-1 px-2 py-1 text-xs md:text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none min-h-[120px] sm:min-h-0"
+                            rows="6"
                             on:keydown={(e) => {
                               if (e.key === "Enter" && !e.shiftKey) {
                                 e.preventDefault();
@@ -536,42 +607,90 @@
                               if (e.key === "Escape") cancelEditingTexto();
                             }}
                           ></textarea>
-                          <div class="flex flex-col gap-1">
+                          <div class="flex sm:flex-col gap-1">
                             <button
                               type="button"
                               on:click={saveEditingTexto}
-                              class="px-2 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700"
+                              class="p-2 bg-green-600 text-white rounded hover:bg-green-700"
                               title="Guardar"
                             >
-                              ✓
+                              <svg
+                                class="w-4 h-4"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
                             </button>
                             <button
                               type="button"
                               on:click={cancelEditingTexto}
-                              class="px-2 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600"
+                              class="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
                               title="Cancelar"
                             >
-                              ✕
+                              <svg
+                                class="w-4 h-4"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
                             </button>
                           </div>
                         </div>
                       {:else}
                         <!-- Modo visualización -->
-                        <div class="flex-1 flex gap-2">
+                        <div class="flex-1 flex flex-col sm:flex-row gap-2">
                           <textarea
                             value={texto}
                             disabled
-                            class="flex-1 px-2 py-1 text-sm border border-gray-300 rounded bg-gray-100 text-gray-700 resize-none"
-                            rows="2"
+                            class="flex-1 px-2 py-1 text-xs md:text-sm border border-gray-300 rounded bg-gray-100 text-gray-700 resize-none"
+                            rows="6"
                           ></textarea>
-                          <div class="flex flex-col gap-1">
+                          <div class="flex sm:flex-col gap-1">
                             <button
                               type="button"
                               on:click={() => startEditingTexto(index)}
                               class="p-2 text-blue-500 hover:text-blue-700"
                               title="Editar"
                             >
-                              ✏️
+                              <svg
+                                class="w-4 h-4"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
+                                />
+                              </svg>
                             </button>
                             <button
                               type="button"
@@ -581,7 +700,23 @@
                               class="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
                               title="Mover arriba"
                             >
-                              ↑
+                              <svg
+                                class="w-4 h-4"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M5 15l7-7 7 7"
+                                />
+                              </svg>
                             </button>
                             <button
                               type="button"
@@ -592,7 +727,23 @@
                               class="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
                               title="Mover abajo"
                             >
-                              ↓
+                              <svg
+                                class="w-4 h-4"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
                             </button>
                             <button
                               type="button"
@@ -600,7 +751,23 @@
                               class="p-2 text-red-500 hover:text-red-700"
                               title="Eliminar"
                             >
-                              ×
+                              <svg
+                                class="w-4 h-4"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+                                />
+                              </svg>
                             </button>
                           </div>
                         </div>
@@ -613,11 +780,11 @@
           </div>
 
           <!-- Botones de acción -->
-          <div class="flex gap-4 pt-6">
+          <div class="flex flex-col sm:flex-row gap-3 md:gap-4 pt-6">
             <button
               type="submit"
               disabled={isLoading}
-              class="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              class="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors w-full sm:w-auto"
             >
               {isLoading ? "Guardando..." : torneo ? "Actualizar" : "Crear"}
             </button>
@@ -625,7 +792,7 @@
               type="button"
               on:click={cancelEditing}
               disabled={isLoading}
-              class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              class="bg-gray-500 hover:bg-gray-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors w-full sm:w-auto"
             >
               Cancelar
             </button>
@@ -633,45 +800,49 @@
         </form>
       {:else}
         <!-- Vista de solo lectura -->
-        <div class="space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4 md:space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div>
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-gray-800 mb-2">
                 Nombre del Torneo
               </h3>
-              <p class="text-gray-600">{torneo?.nombre || "No especificado"}</p>
+              <p class="text-sm md:text-base text-gray-600 break-words">
+                {torneo?.nombre || "No especificado"}
+              </p>
             </div>
             <div>
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-gray-800 mb-2">
                 Organizador
               </h3>
-              <p class="text-gray-600">
+              <p class="text-sm md:text-base text-gray-600 break-words">
                 {torneo?.organizador?.nombre || "No especificado"}
               </p>
             </div>
           </div>
 
           <div>
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">
+            <h3 class="text-base md:text-lg font-semibold text-gray-800 mb-2">
               Descripción
             </h3>
-            <p class="text-gray-600 whitespace-pre-wrap">
+            <p
+              class="text-sm md:text-base text-gray-600 whitespace-pre-wrap break-words"
+            >
               {torneo?.descripcion || "No especificada"}
             </p>
           </div>
 
           {#if torneo?.imagenPrincipal}
             <div>
-              <h3 class="text-lg font-semibold text-gray-800 mb-2">
+              <h3 class="text-base md:text-lg font-semibold text-gray-800 mb-2">
                 Imagen de Fondo del Sitio
               </h3>
-              <div class="bg-gray-50 p-4 rounded-lg">
+              <div class="bg-gray-50 p-3 md:p-4 rounded-lg">
                 <img
                   src={torneo.imagenPrincipal}
                   alt="Imagen de fondo del sitio"
-                  class="max-w-md h-auto rounded-lg shadow-md border border-gray-200"
+                  class="max-w-full md:max-w-md h-auto rounded-lg shadow-md border border-gray-200"
                 />
-                <p class="text-sm text-gray-600 mt-2">
+                <p class="text-xs md:text-sm text-gray-600 mt-2">
                   Esta imagen se utiliza como fondo principal del sitio web.
                 </p>
               </div>
@@ -679,21 +850,23 @@
           {/if}
 
           <div>
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">
+            <h3 class="text-base md:text-lg font-semibold text-gray-800 mb-2">
               Fundamentación
             </h3>
-            <div class="bg-gray-50 p-4 rounded-lg">
-              <h4 class="font-medium text-gray-800 mb-3">
+            <div class="bg-gray-50 p-3 md:p-4 rounded-lg">
+              <h4 class="text-sm md:text-base font-medium text-gray-800 mb-3">
                 {torneo?.fundamentacionTitulo || "Sin título"}
               </h4>
               {#if torneo?.fundamentacionTexto && Array.isArray(torneo.fundamentacionTexto) && torneo.fundamentacionTexto.length > 0}
                 <ul class="space-y-2">
                   {#each torneo.fundamentacionTexto as texto}
-                    <li class="text-gray-600">• {texto}</li>
+                    <li class="text-sm md:text-base text-gray-600 break-words">
+                      • {texto}
+                    </li>
                   {/each}
                 </ul>
               {:else}
-                <p class="text-gray-500 italic">
+                <p class="text-xs md:text-sm text-gray-500 italic">
                   No hay textos de fundamentación
                 </p>
               {/if}
@@ -701,27 +874,29 @@
           </div>
 
           <!-- Estadísticas del torneo -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t">
-            <div class="text-center p-4 bg-blue-50 rounded-lg">
-              <div class="text-2xl font-bold text-blue-600">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 pt-4 md:pt-6 border-t"
+          >
+            <div class="text-center p-3 md:p-4 bg-blue-50 rounded-lg">
+              <div class="text-xl md:text-2xl font-bold text-blue-600">
                 {torneo?.banners?.length || 0}
               </div>
-              <div class="text-sm text-gray-600">Banners</div>
+              <div class="text-xs md:text-sm text-gray-600">Banners</div>
             </div>
-            <div class="text-center p-4 bg-green-50 rounded-lg">
-              <div class="text-2xl font-bold text-green-600">
+            <div class="text-center p-3 md:p-4 bg-green-50 rounded-lg">
+              <div class="text-xl md:text-2xl font-bold text-green-600">
                 {torneo?.deportes?.length || 0}
               </div>
-              <div class="text-sm text-gray-600">Deportes</div>
+              <div class="text-xs md:text-sm text-gray-600">Deportes</div>
             </div>
-            <div class="text-center p-4 bg-purple-50 rounded-lg">
-              <div class="text-2xl font-bold text-purple-600">
+            <div class="text-center p-3 md:p-4 bg-purple-50 rounded-lg">
+              <div class="text-xl md:text-2xl font-bold text-purple-600">
                 {torneo?.deportes?.reduce(
                   (total, deporte) => total + (deporte.equipos?.length || 0),
                   0
                 ) || 0}
               </div>
-              <div class="text-sm text-gray-600">Equipos</div>
+              <div class="text-xs md:text-sm text-gray-600">Equipos</div>
             </div>
           </div>
         </div>

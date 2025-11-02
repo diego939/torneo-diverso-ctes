@@ -195,7 +195,7 @@
         {/if}
 
         <!-- Redes Sociales del Deporte -->
-        {#if deporte.redesSociales && (deporte.redesSociales.instagram || deporte.redesSociales.facebook || deporte.redesSociales.twitter)}
+        {#if deporte.redesSociales && (deporte.redesSociales.instagram || deporte.redesSociales.facebook || deporte.redesSociales.twitter || deporte.redesSociales.tiktok || deporte.redesSociales.youtube)}
           <div
             class="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden"
           >
@@ -209,44 +209,77 @@
               <p class="mb-3 text-gray-600 text-sm md:text-base">
                 Síguenos en nuestras redes:
               </p>
-              <div class="space-y-2">
-                {#if deporte.redesSociales.instagram}
-                  {#each deporte.redesSociales.instagram as red}
-                    <a
-                      href={red.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-blue-900 hover:text-white border border-gray-200 hover:border-blue-900 rounded-lg text-blue-900 font-medium transition-all duration-200 hover:translate-x-1"
-                    >
-                      <i class="bi bi-instagram text-lg"></i> @{red.nombre}
-                    </a>
-                  {/each}
-                {/if}
-                {#if deporte.redesSociales.facebook}
-                  {#each deporte.redesSociales.facebook as red}
-                    <a
-                      href={red.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-blue-900 hover:text-white border border-gray-200 hover:border-blue-900 rounded-lg text-blue-900 font-medium transition-all duration-200 hover:translate-x-1"
-                    >
-                      <i class="bi bi-facebook text-lg"></i>
-                      {red.nombre}
-                    </a>
-                  {/each}
-                {/if}
-                {#if deporte.redesSociales.twitter}
-                  {#each deporte.redesSociales.twitter as red}
-                    <a
-                      href={red.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-blue-900 hover:text-white border border-gray-200 hover:border-blue-900 rounded-lg text-blue-900 font-medium transition-all duration-200 hover:translate-x-1"
-                    >
-                      <i class="bi bi-twitter text-lg"></i> @{red.nombre}
-                    </a>
-                  {/each}
-                {/if}
+              <div class="overflow-x-auto">
+                <div class="flex flex-wrap gap-2">
+                  {#if deporte.redesSociales.instagram}
+                    {#each deporte.redesSociales.instagram as red}
+                      <a
+                        href={red.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shadow-sm hover:shadow-md max-w-full"
+                      >
+                        <i class="bi bi-instagram text-xs flex-shrink-0"></i>
+                        <span class="truncate max-w-[150px]">@{red.nombre}</span
+                        >
+                      </a>
+                    {/each}
+                  {/if}
+                  {#if deporte.redesSociales.facebook}
+                    {#each deporte.redesSociales.facebook as red}
+                      <a
+                        href={red.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shadow-sm hover:shadow-md max-w-full"
+                      >
+                        <i class="bi bi-facebook text-xs flex-shrink-0"></i>
+                        <span class="truncate max-w-[150px]">{red.nombre}</span>
+                      </a>
+                    {/each}
+                  {/if}
+                  {#if deporte.redesSociales.twitter}
+                    {#each deporte.redesSociales.twitter as red}
+                      <a
+                        href={red.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-sky-500 hover:bg-sky-600 text-white rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shadow-sm hover:shadow-md max-w-full"
+                      >
+                        <i class="bi bi-twitter text-xs flex-shrink-0"></i>
+                        <span class="truncate max-w-[150px]">@{red.nombre}</span
+                        >
+                      </a>
+                    {/each}
+                  {/if}
+                  {#if deporte.redesSociales.tiktok}
+                    {#each deporte.redesSociales.tiktok as red}
+                      <a
+                        href={red.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-black hover:bg-gray-800 text-white rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shadow-sm hover:shadow-md max-w-full"
+                      >
+                        <i class="bi bi-tiktok text-xs flex-shrink-0"></i>
+                        <span class="truncate max-w-[150px]">@{red.nombre}</span
+                        >
+                      </a>
+                    {/each}
+                  {/if}
+                  {#if deporte.redesSociales.youtube}
+                    {#each deporte.redesSociales.youtube as red}
+                      <a
+                        href={red.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white rounded-full text-xs font-medium transition-all duration-200 whitespace-nowrap shadow-sm hover:shadow-md max-w-full"
+                      >
+                        <i class="bi bi-youtube text-xs flex-shrink-0"></i>
+                        <span class="truncate max-w-[150px]">{red.nombre}</span>
+                      </a>
+                    {/each}
+                  {/if}
+                </div>
               </div>
             </div>
           </div>
@@ -259,7 +292,7 @@
       <h2
         class="text-xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-6 text-center"
       >
-        📋 Documentos
+        <i class="bi bi-file-earmark-medical-fill"></i> Documentos
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {#if deporte.reglamento}
@@ -274,7 +307,7 @@
               Reglamento
             </h3>
             <p class="text-gray-600 text-sm md:text-base">
-              Ver PDF del reglamento oficial
+              Ver reglamento oficial
             </p>
           </a>
         {/if}
@@ -289,9 +322,7 @@
             <h3 class="text-lg md:text-xl font-semibold text-blue-900 mb-2">
               Fixture
             </h3>
-            <p class="text-gray-600 text-sm md:text-base">
-              Ver calendario de partidos
-            </p>
+            <p class="text-gray-600 text-sm md:text-base">Ver el Fixture</p>
           </a>
         {/if}
         {#if deporte.planilla}
@@ -306,9 +337,7 @@
             <h3 class="text-lg md:text-xl font-semibold text-blue-900 mb-2">
               Planilla de Inscripción
             </h3>
-            <p class="text-gray-600 text-sm md:text-base">
-              Descargar planilla Excel
-            </p>
+            <p class="text-gray-600 text-sm md:text-base">Descargar planilla</p>
           </a>
         {/if}
       </div>
@@ -348,7 +377,7 @@
         <h2
           class="text-xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-6 text-center"
         >
-          💳 Información de Inscripción
+          <i class="bi bi-credit-card-fill"></i> Información de Inscripción
         </h2>
         <div
           class="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden"

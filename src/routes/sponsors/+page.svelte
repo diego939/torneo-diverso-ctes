@@ -79,10 +79,9 @@
     <p
       class="text-sm md:text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto px-2"
     >
-      Este evento es posible gracias al apoyo del Gobierno de la Provincia de
-      Corrientes, la Municipalidad de la Ciudad de Corrientes, la Secretaría de
-      Deportes y todas las instituciones que promueven la diversidad y el
-      deporte inclusivo.
+      Este evento es posible gracias al apoyo de: {#each sponsorsData as sponsor}
+        {" " + sponsor.nombre},
+      {/each} que promueven la diversidad y el deporte inclusivo.
     </p>
   </div>
 </div>

@@ -211,7 +211,7 @@
   <div class="max-w-4xl mx-auto px-4">
     <div class="mb-6">
       <p class="text-sm font-semibold mb-2">
-        Copa Corrientes Diversa {data.config?.anio} 🏳️‍🌈
+        Copa Corrientes Diversa {data?.config?.anio || ""} 🏳️‍🌈
       </p>
     </div>
 
@@ -229,13 +229,13 @@
 
       {#if org?.celularWhatsapp}
         <a
-          href="https://wa.me/{org.celularWhatsapp}"
+          href="https://wa.me/{org?.celularWhatsapp || '+543794765770'}"
           target="_blank"
           rel="noopener noreferrer"
           class="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105"
         >
           <i class="bi bi-whatsapp text-lg"></i>
-          <span class="hidden sm:inline">{org.nombreRedes || "WhatsApp"}</span>
+          <span class="hidden sm:inline">{org?.nombreRedes || "WhatsApp"}</span>
         </a>
       {/if}
     </div>

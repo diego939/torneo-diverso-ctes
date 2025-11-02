@@ -59,14 +59,13 @@
   {#if filteredDeportes.length > 0}
     {#each filteredDeportes as deporte}
       <div class="mb-8 md:mb-12 px-4">
-        <h2
-          class="text-xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-6 text-center"
-        >
-          {deporte.nombre}
-        </h2>
-
         <!-- Card del deporte -->
         <div class="bg-white rounded-2xl shadow-lg p-4 md:p-8">
+          <h2
+            class="text-xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-6 text-center"
+          >
+            {deporte.nombre}
+          </h2>
           <!-- Información del deporte -->
           <div
             class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8"
