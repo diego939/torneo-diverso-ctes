@@ -1,7 +1,11 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import path from "path";
-import fs from "fs";
+import {
+  uploadToBlob,
+  validateFileSize,
+  listBlobFiles,
+  deleteFromBlob,
+} from "$lib/blob";
 
 export const POST: RequestHandler = async ({ request }) => {
   try {
@@ -25,19 +29,17 @@ export const POST: RequestHandler = async ({ request }) => {
       }
 
       // Validar tamaño del archivo (5MB)
-      if (file.size > 12 * 3000 * 3000) {
+      const maxSize = 5 * 1024 * 1024;
+      if (!validateFileSize(file, maxSize)) {
         return json(
           { error: "El archivo es demasiado grande (máx. 5MB)" },
           { status: 400 }
         );
       }
 
-      // Nota: La validación de dimensiones se hace en el frontend
-      // para evitar dependencias adicionales en el servidor
-
       // Obtener extensión del archivo
-      const ext = path.extname(file.name).toLowerCase();
-      const allowedImageExts = [".jpg", ".jpeg", ".png"];
+      const ext = file.name.split(".").pop()?.toLowerCase() || "";
+      const allowedImageExts = ["jpg", "jpeg", "png"];
 
       if (!allowedImageExts.includes(ext)) {
         return json(
@@ -46,42 +48,32 @@ export const POST: RequestHandler = async ({ request }) => {
         );
       }
 
-      // Crear buffer del archivo
-      const buffer = Buffer.from(await file.arrayBuffer());
-
       // Nombre fijo: fondo-sitio con la extensión original
-      const filename = `fondo-sitio${ext}`;
-      const uploadPath = `static/images/${filename}`;
-
-      // Crear directorio si no existe
-      const dir = path.dirname(uploadPath);
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
+      const filename = `fondo-sitio.${ext}`;
+      const blobPath = `images/${filename}`;
 
       // Eliminar archivos anteriores de fondo-sitio si existen
-      const possibleExtensions = [".png", ".jpg", ".jpeg"];
-      for (const oldExt of possibleExtensions) {
-        const oldPath = `static/images/fondo-sitio${oldExt}`;
-        if (fs.existsSync(oldPath)) {
-          fs.unlinkSync(oldPath);
+      try {
+        const existingFiles = await listBlobFiles("images/fondo-sitio");
+        for (const oldFile of existingFiles) {
+          await deleteFromBlob(oldFile.url);
         }
+      } catch (error) {
+        // Si no hay archivos anteriores, continuar sin error
+        console.log("No se encontraron archivos anteriores de fondo-sitio");
       }
 
-      // Escribir archivo
-      fs.writeFileSync(uploadPath, buffer);
-
-      // Retornar URL del archivo
-      const fileUrl = `/images/${filename}`;
+      // Subir a Vercel Blob
+      const url = await uploadToBlob(file, blobPath);
 
       return json({
         success: true,
-        url: fileUrl,
+        url: url,
         filename: filename,
       });
     }
 
-    // Lógica original para deportes
+    // Lógica para archivos de deportes
     if (!deporteId) {
       return json(
         { error: "deporteId es requerido para archivos de deportes" },
@@ -91,12 +83,12 @@ export const POST: RequestHandler = async ({ request }) => {
 
     // Validar tipo de archivo
     const allowedTypes = {
-      planilla: [".xlsx", ".xls", ".pdf"],
-      reglamento: [".pdf"],
-      fixture: [".pdf", ".xlsx", ".xls"],
+      planilla: ["xlsx", "xls", "pdf"],
+      reglamento: ["pdf"],
+      fixture: ["pdf", "xlsx", "xls"],
     };
 
-    const ext = path.extname(file.name).toLowerCase();
+    const ext = file.name.split(".").pop()?.toLowerCase() || "";
     if (!allowedTypes[type as keyof typeof allowedTypes]?.includes(ext)) {
       return json(
         { error: `Tipo de archivo no permitido para ${type}` },
@@ -105,48 +97,38 @@ export const POST: RequestHandler = async ({ request }) => {
     }
 
     // Validar tamaño del archivo (10MB)
-    if (file.size > 10 * 1024 * 1024) {
+    const maxSize = 10 * 1024 * 1024;
+    if (!validateFileSize(file, maxSize)) {
       return json(
         { error: "El archivo es demasiado grande (máx. 10MB)" },
         { status: 400 }
       );
     }
 
-    // Crear buffer del archivo
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const filename = `${deporteId}${ext}`;
+    const filename = `${deporteId}.${ext}`;
 
-    // Determinar ruta de destino
-    let uploadPath = "";
+    // Determinar ruta de destino en Blob
+    let blobPath = "";
     switch (type) {
       case "planilla":
-        uploadPath = `static/planillas/${filename}`;
+        blobPath = `planillas/${filename}`;
         break;
       case "reglamento":
-        uploadPath = `static/reglamentos/${filename}`;
+        blobPath = `reglamentos/${filename}`;
         break;
       case "fixture":
-        uploadPath = `static/fixtures/${filename}`;
+        blobPath = `fixtures/${filename}`;
         break;
       default:
         return json({ error: "Tipo de archivo no válido" }, { status: 400 });
     }
 
-    // Crear directorio si no existe
-    const dir = path.dirname(uploadPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    // Escribir archivo
-    fs.writeFileSync(uploadPath, buffer);
-
-    // Retornar URL del archivo
-    const fileUrl = `/${type}s/${filename}`;
+    // Subir a Vercel Blob
+    const url = await uploadToBlob(file, blobPath);
 
     return json({
       success: true,
-      url: fileUrl,
+      url: url,
       filename: filename,
     });
   } catch (error) {

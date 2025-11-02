@@ -45,6 +45,25 @@
 
   function openForm(deporte: any = null) {
     editingDeporte = deporte;
+
+    // Limpiar archivos seleccionados antes de abrir
+    planillaFile = null;
+    reglamentoFile = null;
+    fixtureFile = null;
+
+    // Limpiar inputs HTML de archivos
+    const planillaInput = document.getElementById(
+      "planilla"
+    ) as HTMLInputElement;
+    const reglamentoInput = document.getElementById(
+      "reglamento"
+    ) as HTMLInputElement;
+    const fixtureInput = document.getElementById("fixture") as HTMLInputElement;
+
+    if (planillaInput) planillaInput.value = "";
+    if (reglamentoInput) reglamentoInput.value = "";
+    if (fixtureInput) fixtureInput.value = "";
+
     if (deporte) {
       formData = {
         nombre: deporte.nombre,
@@ -116,6 +135,19 @@
     planillaFile = null;
     reglamentoFile = null;
     fixtureFile = null;
+
+    // Limpiar inputs HTML de archivos
+    const planillaInput = document.getElementById(
+      "planilla"
+    ) as HTMLInputElement;
+    const reglamentoInput = document.getElementById(
+      "reglamento"
+    ) as HTMLInputElement;
+    const fixtureInput = document.getElementById("fixture") as HTMLInputElement;
+
+    if (planillaInput) planillaInput.value = "";
+    if (reglamentoInput) reglamentoInput.value = "";
+    if (fixtureInput) fixtureInput.value = "";
   }
 
   async function saveDeporte() {
@@ -262,8 +294,8 @@
   }
 
   // Función para eliminar archivo
-  async function deleteFile(filePath: string) {
-    if (!filePath) return;
+  async function deleteFile(fileUrl: string) {
+    if (!fileUrl) return;
 
     try {
       const response = await fetch("/api/admin/delete-file", {
@@ -271,7 +303,7 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ filePath }),
+        body: JSON.stringify({ fileUrl }),
       });
 
       if (!response.ok) {
@@ -569,9 +601,9 @@
 
         <!-- Fechas de Competencia -->
         <div>
-          <label class="block font-semibold text-gray-800 mb-2">
+          <div class="block font-semibold text-gray-800 mb-2">
             Fechas de Competencia:
-          </label>
+          </div>
           <div id="fechas-container" class="space-y-2">
             {#each formData.fechasCompetencia as fecha, index}
               <div class="flex gap-2">
@@ -585,7 +617,9 @@
                   type="button"
                   on:click={() => {
                     formData.fechasCompetencia =
-                      formData.fechasCompetencia.filter((_, i) => i !== index);
+                      formData.fechasCompetencia.filter(
+                        (_: string, i: number) => i !== index
+                      );
                   }}
                   disabled={loading}
                   class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 disabled:bg-gray-400"
@@ -612,9 +646,9 @@
 
         <!-- Horarios -->
         <div>
-          <label class="block font-semibold text-gray-800 mb-2">
+          <div class="block font-semibold text-gray-800 mb-2">
             Descripción de Horarios:
-          </label>
+          </div>
           <div id="horarios-container" class="space-y-2">
             {#each formData.horarios as horario, index}
               <div class="flex gap-2">
@@ -629,7 +663,7 @@
                   type="button"
                   on:click={() => {
                     formData.horarios = formData.horarios.filter(
-                      (_, i) => i !== index
+                      (_: string, i: number) => i !== index
                     );
                   }}
                   disabled={loading}
@@ -654,9 +688,7 @@
 
         <!-- Ubicaciones -->
         <div>
-          <label class="block font-semibold text-gray-800 mb-2">
-            Ubicaciones:
-          </label>
+          <div class="block font-semibold text-gray-800 mb-2">Ubicaciones:</div>
           <div id="ubicaciones-container" class="space-y-2">
             {#each formData.locationsNombre as location, index}
               <div class="flex gap-2">
@@ -678,10 +710,10 @@
                   type="button"
                   on:click={() => {
                     formData.locationsNombre = formData.locationsNombre.filter(
-                      (_, i) => i !== index
+                      (_: string, i: number) => i !== index
                     );
                     formData.locationsUrl = formData.locationsUrl.filter(
-                      (_, i) => i !== index
+                      (_: string, i: number) => i !== index
                     );
                   }}
                   disabled={loading}
@@ -707,17 +739,18 @@
 
         <!-- Redes Sociales -->
         <div>
-          <label class="block font-semibold text-gray-800 mb-2">
+          <div class="block font-semibold text-gray-800 mb-2">
             Redes Sociales:
-          </label>
+          </div>
           <div id="redes-container" class="space-y-2">
             {#each Object.entries(formData.redesSociales) as [red, cuentas]}
+              {@const cuentasArray = cuentas as any[]}
               <div class="border border-gray-300 rounded-lg p-3">
-                <label class="block font-semibold text-gray-700 mb-2 capitalize"
-                  >{red}:</label
-                >
+                <div class="block font-semibold text-gray-700 mb-2 capitalize">
+                  {red}:
+                </div>
                 <div class="space-y-2">
-                  {#each cuentas as cuenta, index}
+                  {#each cuentasArray as cuenta, index}
                     <div class="flex gap-2">
                       <input
                         type="text"
@@ -738,7 +771,7 @@
                         on:click={() => {
                           formData.redesSociales[red] = formData.redesSociales[
                             red
-                          ].filter((_, i) => i !== index);
+                          ].filter((_: any, i: number) => i !== index);
                           if (formData.redesSociales[red].length === 0) {
                             delete formData.redesSociales[red];
                             formData.redesSociales = {

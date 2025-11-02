@@ -1,8 +1,7 @@
 import { error, fail, redirect } from "@sveltejs/kit";
 import { prisma } from "$lib/prisma";
 import type { Actions, PageServerLoad } from "./$types";
-import fs from "fs";
-import path from "path";
+import { listBlobFiles, deleteFromBlob } from "$lib/blob";
 
 export const load: PageServerLoad = async () => {
   try {
@@ -21,18 +20,13 @@ export const load: PageServerLoad = async () => {
       },
     });
 
-    // Obtener imágenes disponibles en la carpeta static/banners
-    const bannersDir = path.join(process.cwd(), "static", "banners");
+    // Obtener imágenes disponibles desde Vercel Blob
     let availableImages: string[] = [];
-
     try {
-      const files = fs.readdirSync(bannersDir);
-      availableImages = files
-        .filter((file) => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
-        .map((file) => `/banners/${file}`)
-        .sort();
+      const blobs = await listBlobFiles("banners/");
+      availableImages = blobs.map((blob) => blob.url).sort();
     } catch (err) {
-      console.warn("No se pudo leer la carpeta de banners:", err);
+      console.warn("No se pudieron listar imágenes de Vercel Blob:", err);
     }
 
     return {
@@ -166,7 +160,27 @@ export const actions: Actions = {
         });
       }
 
-      // Eliminar banner
+      // Eliminar imágenes del banner desde Vercel Blob
+      try {
+        const urlImagenes = Array.isArray(existingBanner.urlImagenes)
+          ? (existingBanner.urlImagenes as string[])
+          : [];
+
+        for (const imageUrl of urlImagenes) {
+          // Solo eliminar si es una URL de Vercel Blob
+          if (imageUrl.includes("blob.vercel-storage.com")) {
+            try {
+              await deleteFromBlob(imageUrl);
+            } catch (err) {
+              console.warn("Error eliminando imagen de Blob:", imageUrl, err);
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("Error eliminando imágenes del banner:", err);
+      }
+
+      // Eliminar banner de la base de datos
       await prisma.banner.delete({
         where: { id },
       });
@@ -183,4 +197,3 @@ export const actions: Actions = {
     }
   },
 };
-

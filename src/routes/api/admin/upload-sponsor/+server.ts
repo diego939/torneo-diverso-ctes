@@ -1,8 +1,12 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import { writeFile, mkdir } from "fs/promises";
-import { join } from "path";
-import { existsSync } from "fs";
+import {
+  uploadToBlob,
+  validateFileType,
+  validateFileSize,
+  getFileExtension,
+  generateUniqueFileName,
+} from "$lib/blob";
 
 export const POST: RequestHandler = async ({ request }) => {
   try {
@@ -21,7 +25,7 @@ export const POST: RequestHandler = async ({ request }) => {
       "image/svg+xml",
       "image/webp",
     ];
-    if (!allowedTypes.includes(file.type)) {
+    if (!validateFileType(file, allowedTypes)) {
       return json(
         {
           error:
@@ -33,32 +37,20 @@ export const POST: RequestHandler = async ({ request }) => {
 
     // Validar tamaño (máximo 5MB)
     const maxSize = 5 * 1024 * 1024; // 5MB
-    if (file.size > maxSize) {
+    if (!validateFileSize(file, maxSize)) {
       return json(
         { error: "El archivo es demasiado grande. Máximo 5MB" },
         { status: 400 }
       );
     }
 
-    // Crear directorio si no existe
-    const uploadDir = join(process.cwd(), "static", "auspiciantes");
-    if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true });
-    }
-
     // Generar nombre único para el archivo
-    const timestamp = Date.now();
-    const extension = file.name.split(".").pop() || "jpg";
-    const fileName = `sponsor-${timestamp}.${extension}`;
-    const filePath = join(uploadDir, fileName);
+    const extension = getFileExtension(file.name) || "jpg";
+    const fileName = generateUniqueFileName("sponsor", extension);
+    const blobPath = `sponsors/${fileName}`;
 
-    // Convertir File a Buffer y guardar
-    const arrayBuffer = await file.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-    await writeFile(filePath, buffer);
-
-    // Retornar URL relativa
-    const url = `/auspiciantes/${fileName}`;
+    // Subir a Vercel Blob
+    const url = await uploadToBlob(file, blobPath);
 
     return json({ url });
   } catch (error) {
@@ -66,4 +58,3 @@ export const POST: RequestHandler = async ({ request }) => {
     return json({ error: "Error al subir la imagen" }, { status: 500 });
   }
 };
-

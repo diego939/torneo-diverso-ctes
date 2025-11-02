@@ -1,15 +1,14 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import { unlink } from "fs/promises";
-import { join } from "path";
+import { deleteFromBlob } from "$lib/blob";
 
 export const DELETE: RequestHandler = async ({ request }) => {
   try {
-    const { filePath } = await request.json();
+    const { filePath, fileUrl } = await request.json();
 
-    if (!filePath) {
+    if (!filePath && !fileUrl) {
       return json(
-        { error: "No se proporcionó la ruta del archivo" },
+        { error: "No se proporcionó la ruta o URL del archivo" },
         { status: 400 }
       );
     }
@@ -17,7 +16,7 @@ export const DELETE: RequestHandler = async ({ request }) => {
     // Proteger el logo por defecto - nunca eliminar
     if (
       filePath === "/equipos/sin-logo.jpg" ||
-      filePath.includes("sin-logo.jpg")
+      filePath?.includes("sin-logo.jpg")
     ) {
       return json(
         { error: "No se puede eliminar el logo por defecto" },
@@ -25,12 +24,18 @@ export const DELETE: RequestHandler = async ({ request }) => {
       );
     }
 
-    // Extraer el nombre del archivo de la URL
-    const fileName = filePath.split("/").pop();
-    const fullPath = join(process.cwd(), "static", "equipos", fileName);
+    // Si se proporciona fileUrl (URL completa de Vercel Blob), usarla directamente
+    const urlToDelete = fileUrl;
 
-    // Eliminar el archivo
-    await unlink(fullPath);
+    if (!urlToDelete) {
+      return json(
+        { error: "URL de archivo requerida para eliminar desde Vercel Blob" },
+        { status: 400 }
+      );
+    }
+
+    // Eliminar el archivo de Vercel Blob
+    await deleteFromBlob(urlToDelete);
 
     return json({ message: "Imagen eliminada exitosamente" });
   } catch (error) {

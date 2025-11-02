@@ -1,7 +1,6 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import fs from "fs";
-import path from "path";
+import { uploadToBlob, validateFileType, validateFileSize } from "$lib/blob";
 import { v4 as uuidv4 } from "uuid";
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -24,40 +23,30 @@ export const POST: RequestHandler = async ({ request }) => {
       "image/gif",
       "image/webp",
     ];
-    if (!allowedTypes.includes(file.type)) {
+    if (!validateFileType(file, allowedTypes)) {
       return json({ error: "Tipo de archivo no permitido" }, { status: 400 });
     }
 
     // Validar tamaño (máximo 5MB)
     const maxSize = 5 * 1024 * 1024; // 5MB
-    if (file.size > maxSize) {
+    if (!validateFileSize(file, maxSize)) {
       return json(
         { error: "El archivo es demasiado grande (máximo 5MB)" },
         { status: 400 }
       );
     }
 
-    // Generar nombre único para el archivo
-    const fileExtension = path.extname(file.name);
-    const fileName = `${uuidv4()}${fileExtension}`;
-    const filePath = path.join(process.cwd(), "static", "banners", fileName);
+    // Generar nombre único para el archivo con UUID
+    const fileExtension = file.name.split(".").pop() || "";
+    const fileName = `${uuidv4()}.${fileExtension}`;
+    const blobPath = `banners/${fileName}`;
 
-    // Asegurar que el directorio existe
-    const bannersDir = path.join(process.cwd(), "static", "banners");
-    if (!fs.existsSync(bannersDir)) {
-      fs.mkdirSync(bannersDir, { recursive: true });
-    }
-
-    // Guardar el archivo
-    const arrayBuffer = await file.arrayBuffer();
-    fs.writeFileSync(filePath, Buffer.from(arrayBuffer));
-
-    // Retornar la URL del archivo
-    const fileUrl = `/banners/${fileName}`;
+    // Subir a Vercel Blob
+    const url = await uploadToBlob(file, blobPath);
 
     return json({
       success: true,
-      url: fileUrl,
+      url: url,
       fileName: fileName,
     });
   } catch (error) {

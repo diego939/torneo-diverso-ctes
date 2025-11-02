@@ -256,11 +256,11 @@
   async function deleteFile(url: string) {
     try {
       await fetch("/api/admin/delete-file", {
-        method: "POST",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ fileUrl: url }),
       });
     } catch (error) {
       console.error("Error deleting file:", error);

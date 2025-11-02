@@ -1,29 +1,35 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import fs from "fs";
-import path from "path";
+import { deleteFromBlob } from "$lib/blob";
 
 export const DELETE: RequestHandler = async ({ request }) => {
   try {
-    const { filePath } = await request.json();
+    const { filePath, fileUrl } = await request.json();
 
-    if (!filePath) {
-      return json({ error: "Ruta de archivo requerida" }, { status: 400 });
+    if (!filePath && !fileUrl) {
+      return json(
+        { error: "No se proporcionó la ruta o URL del archivo" },
+        { status: 400 }
+      );
     }
 
-    // Construir ruta completa del archivo
-    const fullPath = path.join("static", filePath);
+    // Si se proporciona fileUrl (URL completa de Vercel Blob), usarla directamente
+    const urlToDelete = fileUrl;
 
-    // Verificar si el archivo existe
-    if (fs.existsSync(fullPath)) {
-      fs.unlinkSync(fullPath);
-      return json({
-        success: true,
-        message: "Archivo eliminado correctamente",
-      });
-    } else {
-      return json({ error: "Archivo no encontrado" }, { status: 404 });
+    if (!urlToDelete) {
+      return json(
+        { error: "URL de archivo requerida para eliminar desde Vercel Blob" },
+        { status: 400 }
+      );
     }
+
+    // Eliminar el archivo de Vercel Blob
+    await deleteFromBlob(urlToDelete);
+
+    return json({
+      success: true,
+      message: "Archivo eliminado correctamente",
+    });
   } catch (error) {
     console.error("Error deleting file:", error);
     return json({ error: "Error al eliminar archivo" }, { status: 500 });
